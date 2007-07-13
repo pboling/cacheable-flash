@@ -2,7 +2,7 @@ CacheableFlash
 ==============
 
 == Installation
-ruby script/plugin install svn://rubyforge.org/var/svn/pivotalrb/bookmark_fu/trunk/bookmark_fu
+ruby script/plugin install svn://rubyforge.org/var/svn/pivotalrb/cacheable_flash/trunk
 
 == Description
 
