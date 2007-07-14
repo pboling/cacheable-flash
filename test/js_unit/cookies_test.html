@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="../../javascripts/prototype.js" type="text/javascript"></script>
+  <script src="../../javascripts/cookies.js" type="text/javascript"></script>
+
+  <script language="javascript" type="text/javascript">
+  var content;
+  function setUp() {
+    content = $('content');
+    Cookies.expireAll();
+  }
+
+  function tearDown() {
+    Cookies.expireAll();
+  }
+
+  function test_read() {
+    var expires = new Date();
+    expires.setYear(expires.getFullYear() + 1);
+    document.cookie = "foobar=baz; path=/; expires=" + expires.toGMTString();
+
+    assertEquals('baz', Cookies.read('foobar'));
+  }
+
+  function test_write() {
+    Cookies.write('foobar', 'baz');
+    assertEquals("baz", Cookies.read('foobar'));
+  }
+
+  function test_expire() {
+    Cookies.write('foobar', 'baz');
+    Cookies.expire('foobar');
+    assertNull(Cookies.read('foobar'));
+  }
+
+  function test_expireAll() {
+    Cookies.write('foobar', 'baz');
+    Cookies.write('another', 'cookie');
+
+    Cookies.expireAll();
+
+    assertNull(Cookies.read('foobar'));
+    assertNull(Cookies.read('another'));
+  }
+
+  </script>
+
+</head>
+
+<body>
+  <div id="fixture">
+    <div id="content"></div>
+  </div>
+</body>
+</html>

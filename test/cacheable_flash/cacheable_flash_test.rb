@@ -1,5 +1,5 @@
 dir = File.dirname(__FILE__)
-require "#{dir}/test_helper"
+require "#{dir}/../test_helper"
 
 class CacheableFlashTest < Test::Unit::TestCase
   def setup

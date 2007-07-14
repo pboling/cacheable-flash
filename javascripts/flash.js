@@ -3,10 +3,10 @@ var Flash = new Object();
 Flash.data = {};
 
 Flash.transferFromCookies = function() {
-  var data = JSON.parse(readCookie("flash"));
+  var data = JSON.parse(unescape(Cookies.read("flash")));
   if(!data) data = {};
   Flash.data = data;
-  deleteCookie('flash');
+  Cookies.expire("flash");
 };
 
 Flash.writeDataTo = function(name, element) {
@@ -15,5 +15,5 @@ Flash.writeDataTo = function(name, element) {
   if(Flash.data[name]) {
     content = Flash.data[name].toString().gsub(/\+/, ' ');
   }
-  element.innerHTML = content;
+  element.innerHTML = unescape(content);
 };
