@@ -1,2 +1,6 @@
+- Flash on the Rails side is cleared when written to the cookie
+- Uses existing cookie flash value
+- Using Scriptaculous cookie.js library
+
 0.1.1
 - Added cookies.js

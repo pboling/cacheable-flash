@@ -3,17 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <script src="../../javascripts/prototype.js" type="text/javascript"></script>
-  <script src="../../javascripts/cookies.js" type="text/javascript"></script>
+  <script src="../../javascripts/cookie.js" type="text/javascript"></script>
 
   <script language="javascript" type="text/javascript">
   var content;
   function setUp() {
     content = $('content');
-    Cookies.expireAll();
+    Cookie.expireAll();
   }
 
   function tearDown() {
-    Cookies.expireAll();
+    Cookie.expireAll();
   }
 
   function test_read() {
@@ -21,28 +21,28 @@
     expires.setYear(expires.getFullYear() + 1);
     document.cookie = "foobar=baz; path=/; expires=" + expires.toGMTString();
 
-    assertEquals('baz', Cookies.read('foobar'));
+    assertEquals('baz', Cookie.read('foobar'));
   }
 
   function test_write() {
-    Cookies.write('foobar', 'baz');
-    assertEquals("baz", Cookies.read('foobar'));
+    Cookie.write('foobar', 'baz');
+    assertEquals("baz", Cookie.read('foobar'));
   }
 
   function test_expire() {
-    Cookies.write('foobar', 'baz');
-    Cookies.expire('foobar');
-    assertNull(Cookies.read('foobar'));
+    Cookie.write('foobar', 'baz');
+    Cookie.expire('foobar');
+    assertNull(Cookie.read('foobar'));
   }
 
   function test_expireAll() {
-    Cookies.write('foobar', 'baz');
-    Cookies.write('another', 'cookie');
+    Cookie.write('foobar', 'baz');
+    Cookie.write('another', 'cookie');
 
-    Cookies.expireAll();
+    Cookie.expireAll();
 
-    assertNull(Cookies.read('foobar'));
-    assertNull(Cookies.read('another'));
+    assertNull(Cookie.read('foobar'));
+    assertNull(Cookie.read('another'));
   }
 
   </script>

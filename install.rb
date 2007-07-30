@@ -13,9 +13,9 @@ else
   cp "#{dir}/json.js", rails_javascripts_dir
 end
 
-if File.exists?("#{rails_javascripts_dir}/cookies.js")
-  puts "#{rails_javascripts_dir}/cookies.js already exists"
+if File.exists?("#{rails_javascripts_dir}/cookie.js")
+  puts "#{rails_javascripts_dir}/cookie.js already exists"
 else
-  puts "copying cookies.js to #{rails_javascripts_dir}"
-  cp "#{dir}/cookies.js", rails_javascripts_dir
+  puts "copying cookie.js to #{rails_javascripts_dir}"
+  cp "#{dir}/cookie.js", rails_javascripts_dir
 end
