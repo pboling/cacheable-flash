@@ -2,7 +2,7 @@ require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-PKG_VERSION = "0.1.2"
+PKG_VERSION = "0.1.3"
 
 desc 'Default: run unit tests.'
 task :default => :test
