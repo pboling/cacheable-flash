@@ -1,3 +1,5 @@
+- Require json in init.rb
+
 0.1.2
 - Flash on the Rails side is cleared when written to the cookie
 - Uses existing cookie flash value
