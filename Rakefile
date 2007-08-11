@@ -1,6 +1,8 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'fileutils'
+include FileUtils
 
 PKG_VERSION = "0.1.3"
 
@@ -26,10 +28,36 @@ end
 desc 'Tag the current release'
 task(:tag_release) {tag_release}
 
+desc 'Package the release as a tarball'
+task(:pkg) {package_release}
+
 def tag_release
-  dashed_version = PKG_VERSION.gsub('.', '-')
   user = ENV['USER'] || nil
   user_part = user ? "#{user}@" : ""
   svn_path = "svn+ssh://#{user_part}rubyforge.org/var/svn/pivotalrb/cacheable_flash"
   `svn cp #{svn_path}/trunk #{svn_path}/tags/REL-#{dashed_version} -m 'Version #{PKG_VERSION}'`
+end
+
+def package_release
+  dir = File.dirname(__FILE__)
+  mkdir_p "#{dir}/pkg"
+  files = [
+    "README",
+    "CHANGES",
+    "init.rb",
+    "install.rb",
+    "uninstall.rb",
+    "lib",
+    "javascripts",
+    "tasks",
+    "test",
+  ]
+  files = files.collect { |f| "cacheable_flash/#{f}" }
+  Dir.chdir("#{dir}/..") do
+    `tar zcvf cacheable_flash/pkg/cacheable_flash-#{dashed_version}.tgz #{files.join(' ')}`
+  end
+end
+
+def dashed_version
+  PKG_VERSION.gsub('.', '-')
 end
