@@ -41,6 +41,51 @@ end
     Flash.writeDataTo('notice', $('notice_div_id'));
   </script>
 
+== Testing
+You can test your flash cookies by asserting the json of the "flash" cookie.
+Cacheable Flash provides test helpers which includes the flash_cookie method.
+
+=== Test::Unit Example
+  require "cacheable_flash/test_helpers"
+
+  class TestController < ActionController::Base
+    def index
+      flash["notice"] = "In index"
+    end
+  end
+
+  class ControllerTest < Test::Unit::TestCase
+    include CacheableFlash::TestHelpers
+
+    def setup
+      @controller = TestController.new
+      @request = ActionController::TestRequest.new
+      @response = ActionController::TestResponse.new
+    end
+
+    def test_cacheable_flash_action
+      get :index
+      asset_equal "In index", flash_cookie["notice"]
+    end
+  end
+
+=== Rspec Example
+  require "cacheable_flash/test_helpers"
+
+  class TestController < ActionController::Base
+    def index
+      flash["notice"] = "In index"
+    end
+  end
+
+  describe TestController, "#index" do
+    include CacheableFlash::TestHelpers
+    
+    it "writes to the flash cookie" do
+      get :index
+      flash_cookie["notice"].should == "In index"
+    end
+  end
 
 == Copyright
 MIT License
