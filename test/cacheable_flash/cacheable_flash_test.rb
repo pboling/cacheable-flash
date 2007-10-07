@@ -10,7 +10,7 @@ class CacheableFlashTest < Test::Unit::TestCase
     @cookies = {}
     stub(@controller).cookies {@cookies}
   end
-  
+
   def test_write_flash_to_cookie
     expected_flash = {
       'errors' => "This is an Error",
