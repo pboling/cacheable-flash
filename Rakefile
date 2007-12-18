@@ -7,10 +7,10 @@ include FileUtils
 PKG_VERSION = "0.1.4"
 
 desc 'Default: run unit tests.'
-task :default => :test
+task :default => :spec
 
 desc 'Test the cacheable_flash plugin.'
-Rake::TestTask.new(:test) do |t|
+Rake::TestTask.new(:spec) do |t|
   t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
