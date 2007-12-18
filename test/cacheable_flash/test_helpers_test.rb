@@ -9,7 +9,7 @@ class TestHelpersTest < Test::Unit::TestCase
     @request = ActionController::TestRequest.new
     @response = ActionController::TestResponse.new
     @controller.send(:initialize_template_class, @response)
-    @controller.assign_shortcuts @request, @response
+    @controller.send(:assign_shortcuts, @request, @response)
     
     @flash = @controller.send(:flash)
     class << @controller

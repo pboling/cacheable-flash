@@ -42,7 +42,7 @@ end
   </script>
 
 == Testing
-You can test your flash cookies by asserting the json of the "flash" cookie.
+You can test your flash cookies by making assertions on the json of the "flash" cookie.
 Cacheable Flash provides test helpers which includes the flash_cookie method.
 
 === Test::Unit Example
