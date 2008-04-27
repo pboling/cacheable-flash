@@ -50,7 +50,7 @@ def package_release
     "lib",
     "javascripts",
     "tasks",
-    "test",
+    "spec",
   ]
   files = files.collect { |f| "cacheable_flash/#{f}" }
   Dir.chdir("#{dir}/..") do
