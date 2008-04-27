@@ -12,7 +12,7 @@ task :default => :spec
 desc 'Test the cacheable_flash plugin.'
 Rake::TestTask.new(:spec) do |t|
   t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
+  t.pattern = 'spec/**/*_spec.rb'
   t.verbose = true
 end
 
