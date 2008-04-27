@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'fileutils'
 include FileUtils
 
-PKG_VERSION = "0.1.4"
+PKG_VERSION = "0.1.5"
 
 desc 'Default: run unit tests.'
 task :default => :spec
