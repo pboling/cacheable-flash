@@ -6,7 +6,7 @@ include FileUtils
 
 PKG_VERSION = "0.1.5"
 
-desc 'Default: run unit tests.'
+desc 'Default: run specs.'
 task :default => :spec
 
 desc 'Test the cacheable_flash plugin.'
