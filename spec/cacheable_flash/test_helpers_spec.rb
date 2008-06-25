@@ -3,7 +3,8 @@ require File.expand_path("#{dir}/../spec_helper")
 
 module CacheableFlash
   describe TestHelpers do
-    attr_reader :controller, :request, :response, :flash
+    attr_reader :controller, :request, :response, :flash, :fixture
+    include TestHelpers
     before do
       @controller = ActionController::Base.new
       @request = ActionController::TestRequest.new
