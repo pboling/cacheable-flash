@@ -21,7 +21,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'CacheableFlash'
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
@@ -42,7 +42,7 @@ def package_release
   dir = File.dirname(__FILE__)
   mkdir_p "#{dir}/pkg"
   files = [
-    "README",
+    "README.rdoc",
     "CHANGES",
     "init.rb",
     "install.rb",
