@@ -1,3 +1,5 @@
+- Implicitly adding js files to Rails include defaults (Patch from Michael Erb)
+
 0.1.5
 - Requiring version >= 1.1.2 of the json gem
 - Converted tests into specs
