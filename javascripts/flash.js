@@ -13,7 +13,7 @@ Flash.writeDataTo = function(name, element) {
   element = $(element);
   var content = "";
   if(Flash.data[name]) {
-    content = Flash.data[name].toString().gsub(/\+/, ' ');
+    content = Flash.data[name].toString().replace(/\+/g, ' ');
   }
-  element.innerHTML = unescape(content);
+  element.html(unescape(content));
 };

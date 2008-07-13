@@ -19,8 +19,8 @@
   <script language="javascript" type="text/javascript">
   var content;
   function setUp() {
-    content = $('content');
-    content.innerHTML = "";
+    content = $('#content');
+    content.html("");
     Cookie.eraseAll();
   }
 
@@ -65,7 +65,7 @@
     Flash.transferFromCookies();
     Flash.writeDataTo('error', content);
 
-    assertEquals("This is An Error", content.innerHTML);
+    assertEquals("This is An Error", content.html());
   }
 
   function test_writeDataTo_whenThereIsNoCookieValue() {
@@ -73,7 +73,7 @@
     Flash.transferFromCookies();
     Flash.writeDataTo('notice', content);
 
-    assertEquals("", content.innerHTML);
+    assertEquals("", content.html());
   }
 
   function test_writeDataTo_whenPassedAnElementId() {
@@ -82,9 +82,9 @@
     });
 
     Flash.transferFromCookies();
-    Flash.writeDataTo('error', 'content');
+    Flash.writeDataTo('error', '#content');
 
-    assertEquals("This is An Error", content.innerHTML);
+    assertEquals("This is An Error", content.html());
   }
 
   function setUpCookieWithData(values) {
