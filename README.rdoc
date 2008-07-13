@@ -37,8 +37,8 @@ end
   <div id="notice_div_id" class="flash flash_notice"></div>
   <script type="text/javascript">
     Flash.transferFromCookies();
-    Flash.writeDataTo('error', $('error_div_id'));
-    Flash.writeDataTo('notice', $('notice_div_id'));
+    Flash.writeDataTo('error', $('#error_div_id'));
+    Flash.writeDataTo('notice', $('#notice_div_id'));
   </script>
 
 == Testing
