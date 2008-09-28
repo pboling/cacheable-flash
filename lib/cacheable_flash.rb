@@ -4,7 +4,7 @@ module CacheableFlash
   end
 
   def write_flash_to_cookie
-    cookie_flash = cookies['flash'] ? JSON.parse(cookies['flash']) : {}
+    cookie_flash = cookies['flash'] ? ActiveSupport::JSON.decode(cookies['flash']) : {}
 
     flash.each do |key, value|
       if cookie_flash[key.to_s].blank?
