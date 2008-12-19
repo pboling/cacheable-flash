@@ -14,7 +14,7 @@ module CacheableFlash
       end
     end
 
-    cookies['flash'] = cookie_flash.to_json
+    cookies['flash'] = cookie_flash.to_json.gsub("+", "%2B")
     flash.clear
   end
 end

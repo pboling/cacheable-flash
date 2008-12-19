@@ -55,6 +55,12 @@ describe 'CacheableFlash' do
       @controller.write_flash_to_cookie
       JSON.parse(@controller.cookies['flash']).should == { 'foo' => { 'bar' => 'baz' } }
     end
+    
+    it "encodes plus signs in generated JSON before storing in cookie" do
+      @controller.flash = { 'notice' => 'Life, Love + Liberty' }
+      @controller.write_flash_to_cookie
+      @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
+    end
 
     it "clears the controller.flash hash provided by Rails" do
       flash = {
