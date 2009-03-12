@@ -11,6 +11,14 @@ messages from a cookie using JavaScript, instead of in your Rails
 view template.  Flash contents are converted to JSON and placed in
 a cookie by an after_filter in a controller.
 
+== Mailing List
+
+http://groups.google.com/group/PivotalLabsOpenSource
+
+== Pivotal Tracker Bug/Feature Tracker
+
+http://www.pivotaltracker.com/projects/10610
+
 === Usage
 
 To use, include the CacheableFlash module in your controller.
