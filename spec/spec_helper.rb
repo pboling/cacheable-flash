@@ -1,6 +1,7 @@
 require "rubygems"
 require "test/unit"
 require "spec"
+require "spec/autorun"
 require "json"
 require "rr"
 require "tmpdir"
