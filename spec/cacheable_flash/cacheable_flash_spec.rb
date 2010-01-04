@@ -5,7 +5,7 @@ describe 'CacheableFlash' do
   attr_reader :controller_class, :controller, :cookies
   before do
     @controller_class = Struct.new(:cookies, :flash)
-    stub(@controller_class).after_filter
+    stub(@controller_class).around_filter
     @controller_class.send(:include, CacheableFlash)
     @controller = @controller_class.new({}, {})
     @cookies = {}
@@ -76,8 +76,8 @@ describe 'CacheableFlash' do
   end
 
   describe ".included" do
-    it "sets the after_filter on the controller to call #write_flash_to_cookie" do
-      mock(@controller_class).after_filter(:write_flash_to_cookie)
+    it "sets the around_filter on the controller to call #write_flash_to_cookie" do
+      mock(@controller_class).around_filter(:write_flash_to_cookie)
       @controller_class.send(:include, CacheableFlash)
     end
   end

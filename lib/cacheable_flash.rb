@@ -1,9 +1,10 @@
 module CacheableFlash
   def self.included(base)
-    base.after_filter :write_flash_to_cookie
+    base.around_filter :write_flash_to_cookie
   end
 
   def write_flash_to_cookie
+    yield if block_given?
     cookie_flash = if cookies['flash']
       begin
         JSON.parse(cookies['flash'])
