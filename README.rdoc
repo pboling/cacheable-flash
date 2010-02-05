@@ -1,8 +1,12 @@
 CacheableFlash
 ==============
 
+Note: This fork (http://github.com/up_the_irons/cacheable-flash/tree/master) of 
+cacheable-flash aims to be a drop-in replacement for the original cacheable-flash
+(by Pivotal) but uses JQuery instead of Prototype.
+
 == Installation
-ruby script/plugin install svn://rubyforge.org/var/svn/pivotalrb/cacheable_flash/trunk
+ruby script/plugin install git://github.com/up_the_irons/cacheable-flash.git
 
 == Description
 
@@ -45,8 +49,8 @@ end
   <div id="notice_div_id" class="flash flash_notice"></div>
   <script type="text/javascript">
     Flash.transferFromCookies();
-    Flash.writeDataTo('error', $('error_div_id'));
-    Flash.writeDataTo('notice', $('notice_div_id'));
+    Flash.writeDataTo('error', $('#error_div_id'));
+    Flash.writeDataTo('notice', $('#notice_div_id'));
   </script>
 
 == Testing
