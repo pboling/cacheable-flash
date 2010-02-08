@@ -17,13 +17,13 @@ module CacheableFlash
 
     flash.each do |key, value|
       if cookie_flash[key.to_s].blank?
-        cookie_flash[key.to_s] = value
+        cookie_flash[key.to_s] = value.kind_of?(Numeric) ? value.to_s : value
       else
         cookie_flash[key.to_s] << "<br/>#{value}"
       end
     end
 
-    cookies['flash'] = cookie_flash.to_json
+    cookies['flash'] = cookie_flash.to_json.gsub("+", "%2B")
     flash.clear
   end
 end

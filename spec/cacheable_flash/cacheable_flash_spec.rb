@@ -62,6 +62,24 @@ describe 'CacheableFlash' do
         end
       end
     end
+    
+    it "converts flash value to string before storing in cookie if value is a number" do
+      @controller.flash = { 'quantity' => 5 }
+      @controller.write_flash_to_cookie
+      JSON.parse(@controller.cookies['flash']).should == { 'quantity' => "5" }
+    end
+    
+    it "does not convert flash value to string before storing in cookie if value is anything other than a number" do
+      @controller.flash = { 'foo' => { 'bar' => 'baz' } }
+      @controller.write_flash_to_cookie
+      JSON.parse(@controller.cookies['flash']).should == { 'foo' => { 'bar' => 'baz' } }
+    end
+    
+    it "encodes plus signs in generated JSON before storing in cookie" do
+      @controller.flash = { 'notice' => 'Life, Love + Liberty' }
+      @controller.write_flash_to_cookie
+      @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
+    end
 
     it "clears the controller.flash hash provided by Rails" do
       flash = {

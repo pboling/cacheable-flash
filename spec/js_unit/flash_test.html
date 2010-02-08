@@ -57,6 +57,15 @@
     Flash.transferFromCookies();
     assertNull(Cookie.get("flash"));
   }
+  
+  // how do I test this??
+  function test_transferFromCookies_whenValueContainsAPlusSign() {
+    setUpCookieWithData({
+      'notice': "Book+%2B+Gift+Box"
+    });
+    Flash.transferFromCookies();
+    assertEquals("Book + Gift Box", Cookie.get("notice"));
+  }
 
   function test_writeDataTo_whenThereIsACookieValue() {
     setUpCookieWithData({
@@ -86,7 +95,7 @@
 
     assertEquals("This is An Error", content.html());
   }
-
+  
   function setUpCookieWithData(values) {
     Cookie.set('flash', JSON.stringify(values));
   }

@@ -3,3 +3,5 @@
 *.iws
 *.sw?
 .idea
+.DS_Store
+.svn
