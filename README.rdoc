@@ -1,12 +1,13 @@
 CacheableFlash
 ==============
 
-Note: This fork (http://github.com/up_the_irons/cacheable-flash/tree/master) of 
+Note: This fork (http://github.com/pboling/cacheable-flash/tree/master) of
 cacheable-flash aims to be a drop-in replacement for the original cacheable-flash
-(by Pivotal) but uses JQuery instead of Prototype.
+(by Pivotal) but uses JQuery instead of Prototype, and merged several of the forks
+of the project to collect the best features and improvements.
 
 == Installation
-ruby script/plugin install git://github.com/up_the_irons/cacheable-flash.git
+ruby script/plugin install git://github.com/pboling/cacheable-flash.git
 
 == Description
 
