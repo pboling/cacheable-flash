@@ -95,4 +95,4 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
     end
   end
 
-Copyright (c) 2010 Pivotal Labs. This software is licensed under the MIT License.
+Copyright (c) 2007-2010 Pivotal Labs. This software is licensed under the MIT License.
