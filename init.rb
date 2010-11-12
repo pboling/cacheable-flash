@@ -10,4 +10,4 @@ end
 
 require "json"
 require "cacheable_flash"
-ActionView::Helpers::AssetTagHelper.register_javascript_include_default('cookie','flash','json')
+ActionView::Helpers::AssetTagHelper.register_javascript_include_default('jquery.cookie','flash')
