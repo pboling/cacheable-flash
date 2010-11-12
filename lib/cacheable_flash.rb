@@ -7,8 +7,8 @@ module CacheableFlash
     yield if block_given?
     cookie_flash = if cookies['flash']
       begin
-        JSON.parse(cookies['flash'])
-      rescue JSON::ParserError
+        ActiveSupport::JSON.decode(cookies['flash'])
+      rescue
         {}
       end
     else
