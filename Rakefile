@@ -24,7 +24,7 @@ messages from a cookie using JavaScript, instead of in your Rails
 view template.  Flash contents are converted to JSON and placed in
 a cookie by an after_filter in a controller.}
   gem.email = "peter.boling@gmail.com"
-  gem.authors = ["Peter H. Boling"]
+  gem.authors = ["Peter H. Boling","Brian Takita"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
