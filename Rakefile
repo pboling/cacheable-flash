@@ -1,63 +1,53 @@
+# encoding: utf-8
+
+require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "cacheable-flash"
+  gem.homepage = "http://github.com/pboling/cacheable-flash"
+  gem.license = "MIT"
+  gem.summary = %Q{TODO: one-line summary of your gem}
+  gem.description = %Q{TODO: longer description of your gem}
+  gem.email = "peter.boling@peterboling.com"
+  gem.authors = ["pboling"]
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
+
 require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+end
+
+require 'rcov/rcovtask'
+Rcov::RcovTask.new do |test|
+  test.libs << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+  test.rcov_opts << '--exclude "gems/*"'
+end
+
+task :default => :test
+
 require 'rake/rdoctask'
-require 'fileutils'
-include FileUtils
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
-PKG_VERSION = "0.1.5"
-
-desc 'Default: run specs.'
-task :default => :spec
-
-desc 'Test the cacheable_flash plugin.'
-Rake::TestTask.new(:spec) do |t|
-  t.libs << 'lib'
-  t.pattern = 'spec/**/*_spec.rb'
-  t.verbose = true
-end
-
-desc 'Generate documentation for the cacheable_flash plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'CacheableFlash'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README.rdoc')
+  rdoc.title = "cacheable-flash #{version}"
+  rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-desc 'Tag the current release'
-task(:tag_release) {tag_release}
-
-desc 'Package the release as a tarball'
-task(:pkg) {package_release}
-
-def tag_release
-  user = ENV['USER'] || nil
-  user_part = user ? "#{user}@" : ""
-  svn_path = "svn+ssh://#{user_part}rubyforge.org/var/svn/pivotalrb/cacheable_flash"
-  `svn cp #{svn_path}/trunk #{svn_path}/tags/REL-#{dashed_version} -m 'Version #{PKG_VERSION}'`
-end
-
-def package_release
-  dir = File.dirname(__FILE__)
-  mkdir_p "#{dir}/pkg"
-  files = [
-    "README.rdoc",
-    "CHANGES",
-    "init.rb",
-    "install.rb",
-    "uninstall.rb",
-    "lib",
-    "javascripts",
-    "tasks",
-    "spec",
-  ]
-  files = files.collect { |f| "cacheable_flash/#{f}" }
-  Dir.chdir("#{dir}/..") do
-    `tar zcvf cacheable_flash/pkg/cacheable_flash-#{dashed_version}.tgz #{files.join(' ')}`
-  end
-end
-
-def dashed_version
-  PKG_VERSION.gsub('.', '-')
 end

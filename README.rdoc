@@ -4,10 +4,19 @@ CacheableFlash
 Note: This fork (http://github.com/pboling/cacheable-flash/tree/master) of
 cacheable-flash aims to be a drop-in replacement for the original cacheable-flash
 (by Pivotal) but uses JQuery instead of Prototype, and merged several of the forks
-of the project to collect the best features and improvements.
+of the project to collect the best features and improvements.  It has also been made
+compatible with Rails 3, and turned into a gem.
 
-== Installation
+== Installation as plugin
+
 ruby script/plugin install git://github.com/pboling/cacheable-flash.git
+
+== Installation as gem
+
+gem install 'cacheable_flash'
+
+add to your Gemfile:
+gem 'cacheable_flash'
 
 == Description
 
@@ -100,4 +109,22 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
     end
   end
 
-Copyright (c) 2007-2010 Pivotal Labs. This software is licensed under the MIT License.
+== Contributing to cacheable-flash
+
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Licensed under the MIT License.
+
+Copyright (c) 2011 Peter H. Boling (http://peterboling.com). See LICENSE.txt for further details.
+Copyright (c) 2007-2010 Pivotal Labs
+
+
+

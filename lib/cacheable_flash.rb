@@ -1,4 +1,11 @@
 module CacheableFlash
+  if ::Rails.version < "3.1"
+    require 'jquery/rails/railtie'
+  else
+    require 'jquery/rails/engine'
+  end
+  require 'jquery/rails/version'
+
   def self.included(base)
     base.around_filter :write_flash_to_cookie
   end

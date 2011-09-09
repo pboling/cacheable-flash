@@ -1,3 +1,5 @@
+# Only executed when installed as plugin.
+# When installed as a gem must use the generator
 require 'fileutils'
 include FileUtils
 
