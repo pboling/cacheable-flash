@@ -1,3 +1,0 @@
-[submodule "vendor/jquery-cookie"]
-	path = vendor/jquery-cookie
-	url = https://github.com/lrbabe/jquery-cookie.git

@@ -5,7 +5,7 @@ Note: This fork (http://github.com/pboling/cacheable-flash/tree/master) of
 cacheable-flash aims to be a drop-in replacement for the original cacheable-flash
 (by Pivotal) but uses JQuery instead of Prototype, and merged several of the forks
 of the project to collect the best features and improvements.  It has also been made
-compatible with Rails 3, and turned into a gem.
+compatible with Rails 3, hooked into the asset pipeline for rails 3.1, and turned into a gem.
 
 == Installation as plugin
 
@@ -28,10 +28,17 @@ a cookie by an after_filter in a controller.
 == Mailing List
 
 http://groups.google.com/group/PivotalLabsOpenSource
+*This mailing list is for the original CacheableFlash, and may not be able to help with issues with this gem.
 
-== Pivotal Tracker Bug/Feature Tracker
+== Bug/Feature Tracker
 
-http://www.pivotaltracker.com/projects/10610
+https://github.com/pboling/cacheable-flash/issues
+
+== Wiki
+
+Please help document!
+
+https://github.com/pboling/cacheable-flash/wiki
 
 === Usage
 

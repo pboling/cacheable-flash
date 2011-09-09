@@ -1,5 +1,4 @@
-dir = File.dirname(__FILE__)
-require File.expand_path("#{dir}/../spec_helper")
+require 'spec_helper'
 
 describe 'CacheableFlash' do
   attr_reader :controller_class, :controller, :cookies
