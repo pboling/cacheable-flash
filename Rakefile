@@ -35,11 +35,6 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
-
 require 'reek/rake/task'
 Reek::Rake::Task.new do |t|
   t.fail_on_error = true
