@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module CacheableFlash
-  # Copies javascript libraries flash.js and jquery.cookie.js to public/javascripts/ (Rails 3.X only)
+  # Copies javascript libraries flash.js and jquery.cookie.js to public/javascripts/ (Rails 3.0.X only, Rails 3.1 has asset pipeline)
   #
   # @example
   #   $ rails generate cacheable_flash:install
@@ -13,15 +13,10 @@ module CacheableFlash
 
     if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR >= 1
       # Rails 3.1 has the asset pipeline, no need to copy CSS files any more
-      desc "Copies a config initializer to config/initializers/formtastic.rb"
-      def copy_files
-        copy_file 'formtastic.rb', 'config/initializers/formtastic.rb'
-      end
     else
-      # Rails 3.0 doesn't have an asset pipeline, so we copy in CSS too
-      desc "Copies some CSS files to public/stylesheets/ and a config initializer to config/initializers/formtastic.rb"
+      # Rails 3.0 doesn't have an asset pipeline, so we copy in javascript files
+      desc "Copies some JS files to public/javascripts/"
       def copy_files
-        template 'formtastic.rb', 'config/initializers/formtastic.rb'
         template '../../../app/assets/stylesheets/formtastic.css',     'public/stylesheets/formtastic.css'
         template '../../../app/assets/stylesheets/formtastic_ie6.css', 'public/stylesheets/formtastic_ie6.css'
         template '../../../app/assets/stylesheets/formtastic_ie7.css', 'public/stylesheets/formtastic_ie7.css'
