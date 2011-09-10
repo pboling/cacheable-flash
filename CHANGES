@@ -1,3 +1,7 @@
+0.2.2
+- Improved deprecation warnings about using the generator (not needed with asset pipeline)
+- Improved README setup instructions
+
 0.2.1
 - Fixed bug in generator for those not using asset pipeline, or pre Rails 3.1
 
