@@ -8,17 +8,17 @@ module CacheableFlash
   #
   # @todo Test with Rails 3.0
   class InstallGenerator < Rails::Generators::Base
-    source_root File.expand_path('../../../../vendor/assets/javascripts', __FILE__)
-    class_option :template_engine
+    source_root File.expand_path('../../../../../vendor/assets/javascripts/', __FILE__)
 
     # Rails 3.1 has the asset pipeline, no need to copy javascript files anymore
     # Rails 3.0 doesn't have an asset pipeline, so we copy in javascript files
-    if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 0
-      desc "Copies some JS files to public/javascripts/"
-      def copy_files
-        template 'flash.js',     'public/javascripts/flash.js'
-        template 'jquery.cookie.js', 'public/javascripts/jquery.cookie.js'
-      end
+    if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 1
+      ActiveSupport::Deprecation.warn("Rails 3.1 has the asset pipeline, so you only need to copy javascript files if you aren't using it.")
+    end
+    desc "Copies some JS files to public/javascripts/"
+    def copy_files
+      template 'flash.js',     'public/javascripts/flash.js'
+      template 'jquery.cookie.js', 'public/javascripts/jquery.cookie.js'
     end
   end
 end

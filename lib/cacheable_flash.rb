@@ -3,6 +3,7 @@ module CacheableFlash
     require 'cacheable_flash/rails/railtie'
   elsif ::Rails.version >= "3.1"
     require 'cacheable_flash/rails/engine'
+    require 'cacheable_flash/rails/railtie'
   else
     # For older rails use generator
   end
