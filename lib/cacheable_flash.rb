@@ -1,8 +1,8 @@
 module CacheableFlash
-  if ::Rails.version < "3.1"
-    require 'jquery/rails/railtie'
+  if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 0
+    require 'cacheable_flash/rails/railtie'
   elsif ::Rails.version >= "3.1"
-    require 'jquery/rails/engine'
+    require 'cacheable_flash/rails/engine'
   else
     # For older rails use generator
   end
