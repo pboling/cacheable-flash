@@ -21,7 +21,7 @@ gem 'cacheable_flash'
 == Setup
 
 CacheableFlash adds its javascript dependencies as a Rails 3 javascript 'expansion',
-which are only used is you are Note using the asset pipeline (apparently?).
+which are only used if you are NOT using the asset pipeline (apparently?).
 
 So if you have config.assets.enabled = false in application.rb then in your layout:
   javascript_include_tag :cacheable_flash
