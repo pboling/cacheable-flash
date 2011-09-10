@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter H. Boling", "Brian Takita"]
-  s.date = "2011-09-09"
+  s.date = "2011-09-10"
   s.description = "This plugin enables greater levels of page caching by rendering flash\nmessages from a cookie using JavaScript, instead of in your Rails\nview template.  Flash contents are converted to JSON and placed in\na cookie by an after_filter in a controller."
   s.email = "peter.boling@gmail.com"
   s.extra_rdoc_files = [
@@ -29,8 +29,8 @@ Gem::Specification.new do |s|
     "init.rb",
     "install.rb",
     "lib/cacheable_flash.rb",
-    "lib/cacheable_flash/engine.rb",
-    "lib/cacheable_flash/railtie.rb",
+    "lib/cacheable_flash/rails/engine.rb",
+    "lib/cacheable_flash/rails/railtie.rb",
     "lib/generators/cacheable_flash/install/install_generator.rb",
     "spec/cacheable_flash/cacheable_flash_spec.rb",
     "spec/cacheable_flash/install_spec.rb",
