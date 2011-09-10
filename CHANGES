@@ -1,4 +1,7 @@
-0.2.0 by Peter Boling
+0.2.1
+- Fixed bug in generator for those not using asset pipeline, or pre Rails 3.1
+
+0.2.0 [Peter Boling begins gemification process]
 - Converted to a gem
 - Updated to improved, patched jquery.cookie from https://github.com/pboling/jquery-cookie
 - Merged a few other forks of cacheable-flash

@@ -20,13 +20,16 @@ gem 'cacheable_flash'
 
 == Setup
 
-CacheableFlash adds its javascript dependencies as a Rails 3 javascript 'expansion',
-which are only used if you are NOT using the asset pipeline (apparently?).
+=== Without asset pipeline, or pre-Rails 3.1:
 
-So if you have config.assets.enabled = false in application.rb then in your layout:
-  javascript_include_tag :cacheable_flash
+rails generate cacheable_flash:install
 
-Otherwise, the asset pipeline should have access to the assets in this gem in your app/assets/application.js:
+In your layout:
+javascript_include_tag 'flash', 'jquery.cookie'
+
+=== With asset pipeline (requires Rails 3.1)
+
+The asset pipeline should have access to the assets in this gem via your app/assets/application.js:
 
 //= require flash
 //= require jquery.cookie
