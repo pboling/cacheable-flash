@@ -1,9 +1,8 @@
-dir = File.dirname(__FILE__)
-require File.expand_path("#{dir}/../spec_helper")
+require 'spec_helper'
 
 module CacheableFlash
   describe TestHelpers do
-    attr_reader :controller, :request, :response, :flash, :fixture
+    attr_reader :controller, :request, :response, :flash, :cookies
     include TestHelpers
     before do
       @controller = ActionController::Base.new
@@ -26,7 +25,9 @@ module CacheableFlash
         }
         flash['errors'] = expected_flash['errors']
         flash['notice'] = expected_flash['notice']
+
         controller.write_flash_to_cookie
+        @cookies = response.cookies # simulate setting the cookie instance variable in rails tests
 
         flash_cookie.should == expected_flash
       end

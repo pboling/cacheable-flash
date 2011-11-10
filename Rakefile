@@ -1,63 +1,54 @@
+# encoding: utf-8
+
+require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
-require 'fileutils'
-include FileUtils
 
-PKG_VERSION = "0.1.5"
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "cacheable_flash"
+  gem.homepage = "http://github.com/pboling/cacheable-flash"
+  gem.license = "MIT"
+  gem.summary = %Q{Render flash messages from a cookie using JavaScript, instead of in your Rails
+view template}
+  gem.description = %Q{This plugin enables greater levels of page caching by rendering flash
+messages from a cookie using JavaScript, instead of in your Rails
+view template.  Flash contents are converted to JSON and placed in
+a cookie by an after_filter in a controller.}
+  gem.email = "peter.boling@gmail.com"
+  gem.authors = ["Peter H. Boling","Brian Takita"]
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
 
-desc 'Default: run specs.'
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
+end
+
+require 'reek/rake/task'
+Reek::Rake::Task.new do |t|
+  t.fail_on_error = true
+  t.verbose = false
+  t.source_files = 'lib/**/*.rb'
+end
+
+require 'roodi'
+require 'roodi_task'
+RoodiTask.new do |t|
+  t.verbose = false
+end
+
 task :default => :spec
 
-desc 'Test the cacheable_flash plugin.'
-Rake::TestTask.new(:spec) do |t|
-  t.libs << 'lib'
-  t.pattern = 'spec/**/*_spec.rb'
-  t.verbose = true
-end
-
-desc 'Generate documentation for the cacheable_flash plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'CacheableFlash'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-desc 'Tag the current release'
-task(:tag_release) {tag_release}
-
-desc 'Package the release as a tarball'
-task(:pkg) {package_release}
-
-def tag_release
-  user = ENV['USER'] || nil
-  user_part = user ? "#{user}@" : ""
-  svn_path = "svn+ssh://#{user_part}rubyforge.org/var/svn/pivotalrb/cacheable_flash"
-  `svn cp #{svn_path}/trunk #{svn_path}/tags/REL-#{dashed_version} -m 'Version #{PKG_VERSION}'`
-end
-
-def package_release
-  dir = File.dirname(__FILE__)
-  mkdir_p "#{dir}/pkg"
-  files = [
-    "README.rdoc",
-    "CHANGES",
-    "init.rb",
-    "install.rb",
-    "uninstall.rb",
-    "lib",
-    "javascripts",
-    "tasks",
-    "spec",
-  ]
-  files = files.collect { |f| "cacheable_flash/#{f}" }
-  Dir.chdir("#{dir}/..") do
-    `tar zcvf cacheable_flash/pkg/cacheable_flash-#{dashed_version}.tgz #{files.join(' ')}`
-  end
-end
-
-def dashed_version
-  PKG_VERSION.gsub('.', '-')
-end
+require 'yard'
+YARD::Rake::YardocTask.new

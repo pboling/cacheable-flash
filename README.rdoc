@@ -1,8 +1,44 @@
 CacheableFlash
 ==============
 
-== Installation
-ruby script/plugin install svn://rubyforge.org/var/svn/pivotalrb/cacheable_flash/trunk
+Note: This fork (http://github.com/pboling/cacheable-flash/tree/master) of
+cacheable-flash aims to be a drop-in replacement for the original cacheable-flash
+(by Pivotal) but uses JQuery instead of Prototype, and merged several of the forks
+of the project to collect the best features and improvements.  It has also been made
+compatible with Rails 3, hooked into the asset pipeline for rails 3.1, and turned into a gem.
+
+== Installation as plugin
+
+ruby script/plugin install git://github.com/pboling/cacheable-flash.git
+
+== Installation as gem
+
+gem install 'cacheable_flash'
+
+add to your Gemfile:
+gem 'cacheable_flash'
+
+== Setup
+
+=== Without asset pipeline, or pre-Rails 3.1:
+
+First copy the JS assets into your app:
+  rails generate cacheable_flash:install
+
+CacheableFlash adds its javascript dependencies as a Rails 3 javascript 'expansion',
+which are only used if you are NOT using the asset pipeline (apparently?).
+
+So if you have config.assets.enabled = false in application.rb then in your layout:
+  javascript_include_tag :cacheable_flash
+
+Otherwise, in your layout, just source them like normal:
+  javascript_include_tag 'flash', 'jquery.cookie'
+
+=== With asset pipeline (requires Rails 3.1)
+
+The asset pipeline should have access to the assets in this gem via your app/assets/application.js:
+  //= require flash
+  //= require jquery.cookie
 
 == Description
 
@@ -14,10 +50,17 @@ a cookie by an after_filter in a controller.
 == Mailing List
 
 http://groups.google.com/group/PivotalLabsOpenSource
+*This mailing list is for the original CacheableFlash, and may not be able to help with issues with this gem.
 
-== Pivotal Tracker Bug/Feature Tracker
+== Bug/Feature Tracker
 
-http://www.pivotaltracker.com/projects/10610
+https://github.com/pboling/cacheable-flash/issues
+
+== Wiki
+
+Please help document!
+
+https://github.com/pboling/cacheable-flash/wiki
 
 === Usage
 
@@ -45,8 +88,8 @@ end
   <div id="notice_div_id" class="flash flash_notice"></div>
   <script type="text/javascript">
     Flash.transferFromCookies();
-    Flash.writeDataTo('error', $('error_div_id'));
-    Flash.writeDataTo('notice', $('notice_div_id'));
+    Flash.writeDataTo('error', $('#error_div_id'));
+    Flash.writeDataTo('notice', $('#notice_div_id'));
   </script>
 
 == Testing
@@ -95,4 +138,22 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
     end
   end
 
-Copyright (c) 2007-2010 Pivotal Labs. This software is licensed under the MIT License.
+== Contributing to cacheable-flash
+
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Licensed under the MIT License.
+
+Copyright (c) 2011 Peter H. Boling (http://peterboling.com). See LICENSE.txt for further details.
+Copyright (c) 2007-2010 Pivotal Labs
+
+
+
