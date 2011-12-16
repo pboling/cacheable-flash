@@ -1,3 +1,19 @@
+0.2.2
+- Improved deprecation warnings about using the generator (not needed with asset pipeline)
+- Improved README setup instructions
+
+0.2.1
+- Fixed bug in generator for those not using asset pipeline, or pre Rails 3.1
+
+0.2.0 [Peter Boling begins gemification process]
+- Converted to a gem
+- Updated to improved, patched jquery.cookie from https://github.com/pboling/jquery-cookie
+- Merged a few other forks of cacheable-flash
+- Added Engine to hook into Rails 3.1 asset pipeline
+- Added Railtie to improve usability with Rails 3.0
+- Added Generator to improve usability with Rails < 3
+
+Unreleased
 - Implicitly adding js files to Rails include defaults (Patch from Michael Erb)
 
 0.1.5

@@ -2,18 +2,21 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <script src="../../javascripts/prototype.js" type="text/javascript"></script>
+  <!-- You will need to change this to point to your jsUnitCore.js -->
+  <script src="http://localhost:3000/jsunit/app/jsUnitCore.js" type="text/javascript"></script>
+
+  <script src="../../javascripts/jquery.js" type="text/javascript"></script>
   <script src="../../javascripts/cookie.js" type="text/javascript"></script>
 
   <script language="javascript" type="text/javascript">
   var content;
   function setUp() {
-    content = $('content');
-    Cookie.expireAll();
+    content = $('#content');
+    Cookie.eraseAll();
   }
 
   function tearDown() {
-    Cookie.expireAll();
+    Cookie.eraseAll();
   }
 
   function test_read() {
@@ -21,28 +24,28 @@
     expires.setYear(expires.getFullYear() + 1);
     document.cookie = "foobar=baz; path=/; expires=" + expires.toGMTString();
 
-    assertEquals('baz', Cookie.read('foobar'));
+    assertEquals('baz', Cookie.get('foobar'));
   }
 
   function test_write() {
-    Cookie.write('foobar', 'baz');
-    assertEquals("baz", Cookie.read('foobar'));
+    Cookie.set('foobar', 'baz');
+    assertEquals("baz", Cookie.get('foobar'));
   }
 
   function test_expire() {
-    Cookie.write('foobar', 'baz');
-    Cookie.expire('foobar');
-    assertNull(Cookie.read('foobar'));
+    Cookie.set('foobar', 'baz');
+    Cookie.erase('foobar');
+    assertNull(Cookie.get('foobar'));
   }
 
   function test_expireAll() {
-    Cookie.write('foobar', 'baz');
-    Cookie.write('another', 'cookie');
+    Cookie.set('foobar', 'baz');
+    Cookie.set('another', 'cookie');
 
-    Cookie.expireAll();
+    Cookie.eraseAll();
 
-    assertNull(Cookie.read('foobar'));
-    assertNull(Cookie.read('another'));
+    assertNull(Cookie.get('foobar'));
+    assertNull(Cookie.get('another'));
   }
 
   </script>
