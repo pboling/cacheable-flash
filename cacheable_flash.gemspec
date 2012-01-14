@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter H. Boling", "Brian Takita"]
-  s.date = "2012-01-13"
+  s.date = "2012-01-14"
   s.description = "This plugin enables greater levels of page caching by rendering flash\nmessages from a cookie using JavaScript, instead of in your Rails\nview template.  Flash contents are converted to JSON and placed in\na cookie by an after_filter in a controller."
   s.email = "peter.boling@gmail.com"
   s.extra_rdoc_files = [
