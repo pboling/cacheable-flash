@@ -15,7 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "cacheable_flash"
-  gem.homepage = "http://github.com/pboling/cacheable-flash"
+  gem.homepage = "http://github.com/pivotal/cacheable-flash"
   gem.license = "MIT"
   gem.summary = %Q{Render flash messages from a cookie using JavaScript, instead of in your Rails
 view template}

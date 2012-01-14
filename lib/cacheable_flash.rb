@@ -1,4 +1,5 @@
 module CacheableFlash
+  require 'rails'
   if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 0
     require 'cacheable_flash/rails/railtie'
   elsif ::Rails.version >= "3.1"

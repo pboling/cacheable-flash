@@ -1,15 +1,14 @@
 CacheableFlash
 ==============
 
-Note: This fork (http://github.com/pboling/cacheable-flash/tree/master) of
-cacheable-flash aims to be a drop-in replacement for the original cacheable-flash
-(by Pivotal) but uses JQuery instead of Prototype, and merged several of the forks
-of the project to collect the best features and improvements.  It has also been made
-compatible with Rails 3, hooked into the asset pipeline for rails 3.1, and turned into a gem.
+cacheable-flash > v0.2 (organized by Peter Boling from many of the community forks)
+aims to be a drop-in replacement for the original cacheable-flash v0.1 (by Pivotal)
+but uses JQuery instead of Prototype.  The idea was to merge forks  to collect the best features and improvements.
+It has also been made compatible with Rails 3, hooked into the asset pipeline for rails 3.1, and turned into a gem.
 
 == Installation as plugin
 
-ruby script/plugin install git://github.com/pboling/cacheable-flash.git
+ruby script/plugin install git://github.com/pivotal/cacheable-flash.git
 
 == Installation as gem
 
@@ -36,7 +35,7 @@ Otherwise, in your layout, just source them like normal:
 
 === With asset pipeline (requires Rails 3.1)
 
-The asset pipeline should have access to the assets in this gem via your app/assets/application.js:
+The asset pipeline should have access to the assets in this gem via your app/assets/javascripts/application.js:
   //= require flash
   //= require jquery.cookie
 
@@ -54,13 +53,13 @@ http://groups.google.com/group/PivotalLabsOpenSource
 
 == Bug/Feature Tracker
 
-https://github.com/pboling/cacheable-flash/issues
+https://github.com/pivotal/cacheable-flash/issues
 
 == Wiki
 
 Please help document!
 
-https://github.com/pboling/cacheable-flash/wiki
+https://github.com/pivotal/cacheable-flash/wiki
 
 === Usage
 
@@ -152,7 +151,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 
 Licensed under the MIT License.
 
-Copyright (c) 2011 Peter H. Boling (http://peterboling.com). See LICENSE.txt for further details.
+Copyright (c) 2011-2012 Peter H. Boling (http://peterboling.com). See LICENSE.txt (MIT license) for further details.
 Copyright (c) 2007-2010 Pivotal Labs
 
 

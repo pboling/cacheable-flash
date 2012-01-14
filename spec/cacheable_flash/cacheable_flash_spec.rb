@@ -4,11 +4,11 @@ describe 'CacheableFlash' do
   attr_reader :controller_class, :controller, :cookies
   before do
     @controller_class = Struct.new(:cookies, :flash)
-    stub(@controller_class).around_filter
+    @controller_class.stub(:around_filter)
     @controller_class.send(:include, CacheableFlash)
     @controller = @controller_class.new({}, {})
     @cookies = {}
-    stub(@controller).cookies {@cookies}
+    @controller.stub(:cookies).and_return {@cookies}
   end
 
   describe "#write_flash_to_cookie" do
@@ -77,7 +77,11 @@ describe 'CacheableFlash' do
     it "encodes plus signs in generated JSON before storing in cookie" do
       @controller.flash = { 'notice' => 'Life, Love + Liberty' }
       @controller.write_flash_to_cookie
-      @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
+      if JSON::VERSION >= "1.6"
+        @controller.cookies['flash'].should == "{\"notice\":\"Life, Love %2B Liberty\"}"
+      else
+        @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
+      end
     end
 
     it "clears the controller.flash hash provided by Rails" do
@@ -94,7 +98,7 @@ describe 'CacheableFlash' do
 
   describe ".included" do
     it "sets the around_filter on the controller to call #write_flash_to_cookie" do
-      mock(@controller_class).around_filter(:write_flash_to_cookie)
+      @controller_class.should_receive(:around_filter).with(:write_flash_to_cookie)
       @controller_class.send(:include, CacheableFlash)
     end
   end

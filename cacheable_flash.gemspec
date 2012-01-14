@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cacheable_flash"
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter H. Boling", "Brian Takita"]
-  s.date = "2011-09-10"
+  s.date = "2012-01-13"
   s.description = "This plugin enables greater levels of page caching by rendering flash\nmessages from a cookie using JavaScript, instead of in your Rails\nview template.  Flash contents are converted to JSON and placed in\na cookie by an after_filter in a controller."
   s.email = "peter.boling@gmail.com"
   s.extra_rdoc_files = [
@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
     "vendor/assets/javascripts/flash.js",
     "vendor/assets/javascripts/jquery.cookie.js"
   ]
-  s.homepage = "http://github.com/pboling/cacheable-flash"
+  s.homepage = "http://github.com/pivotal/cacheable-flash"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
@@ -53,33 +53,30 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
-      s.add_runtime_dependency(%q<actionpack>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, ["> 3.0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
-      s.add_development_dependency(%q<yard>, ["~> 0.6.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_development_dependency(%q<yard>, ["~> 0.7.4"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.0.21"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<reek>, ["~> 1.2.8"])
       s.add_development_dependency(%q<roodi>, ["~> 2.1.0"])
     else
-      s.add_dependency(%q<activesupport>, [">= 0"])
-      s.add_dependency(%q<actionpack>, [">= 0"])
+      s.add_dependency(%q<rails>, ["> 3.0"])
       s.add_dependency(%q<json>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
-      s.add_dependency(%q<yard>, ["~> 0.6.0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_dependency(%q<yard>, ["~> 0.7.4"])
+      s.add_dependency(%q<bundler>, ["~> 1.0.21"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<reek>, ["~> 1.2.8"])
       s.add_dependency(%q<roodi>, ["~> 2.1.0"])
     end
   else
-    s.add_dependency(%q<activesupport>, [">= 0"])
-    s.add_dependency(%q<actionpack>, [">= 0"])
+    s.add_dependency(%q<rails>, ["> 3.0"])
     s.add_dependency(%q<json>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
-    s.add_dependency(%q<yard>, ["~> 0.6.0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+    s.add_dependency(%q<yard>, ["~> 0.7.4"])
+    s.add_dependency(%q<bundler>, ["~> 1.0.21"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<reek>, ["~> 1.2.8"])
     s.add_dependency(%q<roodi>, ["~> 2.1.0"])
