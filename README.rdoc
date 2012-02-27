@@ -1,6 +1,6 @@
 = CacheableFlash
 
-Note: This fork, http://github.com/pboling/cacheable-flash/, of
+Note: This fork, http://github.com/pboling/cacheable-flash, of
 cacheable-flash is where I play with new features & refactoring.  I, pboling, 
 am a maintainer of the the official repository here https://github.com/pivotal/cacheable-flash.
 
