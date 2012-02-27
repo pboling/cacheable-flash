@@ -1,3 +1,12 @@
+0.2.4 - FEB.27.2012
+- Dependency diet!  No longer requires all of rails - only railties.
+
+0.2.3 - JAN.13.2012
+- Fixed problems loading assets: Sprockets::FileNotFound - thanks jlxw
+- reflect move back to pivotal's repo in README.
+- Updated specs, to running and passing condition!
+- Made rails > 3.0 a dependency, since it is (uses ::Rails::Engine and :Rails::Railtie)
+
 0.2.2
 - Improved deprecation warnings about using the generator (not needed with asset pipeline)
 - Improved README setup instructions
