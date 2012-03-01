@@ -1,15 +1,28 @@
+require 'json'
+
 module CacheableFlash
+<<<<<<< HEAD
   require 'rails'
   if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 0
     require 'cacheable_flash/rails/railtie'
   elsif ::Rails.version >= "3.1"
     require 'cacheable_flash/rails/engine'
     require 'cacheable_flash/rails/railtie'
+=======
+  if defined?(Rails) && ::Rails::VERSION::MAJOR == 3
+    if ::Rails::VERSION::MINOR >= 1
+      require "cacheable_flash/engine"
+      require 'cacheable_flash/railtie'
+    elsif ::Rails::VERSION::MINOR == 0
+      require 'cacheable_flash/railtie'
+    end
+>>>>>>> pboling/master
   else
     # For older rails use generator
   end
 
   def self.included(base)
+    #base must define around_filter, as in Rails
     base.around_filter :write_flash_to_cookie
   end
 
@@ -17,7 +30,7 @@ module CacheableFlash
     yield if block_given?
     cookie_flash = if cookies['flash']
       begin
-        ActiveSupport::JSON.decode(cookies['flash'])
+        JSON(cookies['flash'])
       rescue
         {}
       end
@@ -32,8 +45,9 @@ module CacheableFlash
         cookie_flash[key.to_s] << "<br/>#{value}"
       end
     end
-
+    # Base must define cookies, as in Rails
     cookies['flash'] = cookie_flash.to_json.gsub("+", "%2B")
+    # Base must define flash, as in Rails
     flash.clear
   end
 end

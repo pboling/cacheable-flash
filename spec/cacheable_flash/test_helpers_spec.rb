@@ -1,4 +1,3 @@
-# TODO: Does not work with latest rails, and switching from ActionController to ActionDispatch didn't fix it.
 #require 'spec_helper'
 #
 #module CacheableFlash

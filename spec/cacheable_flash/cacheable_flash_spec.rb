@@ -8,7 +8,11 @@ describe 'CacheableFlash' do
     @controller_class.send(:include, CacheableFlash)
     @controller = @controller_class.new({}, {})
     @cookies = {}
+<<<<<<< HEAD
     @controller.stub(:cookies).and_return {@cookies}
+=======
+    @controller.stub(:cookies).and_return(@cookies)
+>>>>>>> pboling/master
   end
 
   describe "#write_flash_to_cookie" do
@@ -21,7 +25,7 @@ describe 'CacheableFlash' do
         controller.flash = expected_flash.dup
         controller.write_flash_to_cookie
 
-        JSON.parse(@controller.cookies['flash']).should == expected_flash
+        JSON(@controller.cookies['flash']).should == expected_flash
       end
     end
 
@@ -44,7 +48,7 @@ describe 'CacheableFlash' do
             'notice' => "Existing notice<br/>New notice",
             'errors' => "Existing errors<br/>New errors",
           }
-          JSON.parse(@controller.cookies['flash']).should == expected_flash
+          JSON(@controller.cookies['flash']).should == expected_flash
         end
       end
 
@@ -52,12 +56,12 @@ describe 'CacheableFlash' do
         it "does not have an error and starts with an empty Hash" do
           @cookies['flash'] = ""
           lambda do
-            JSON.parse(@cookies['flash'])
+            JSON(@cookies['flash'])
           end.should raise_error(JSON::ParserError)
 
           @controller.write_flash_to_cookie
 
-          JSON.parse(@cookies['flash']).should == {}
+          JSON(@cookies['flash']).should == {}
         end
       end
     end
@@ -65,23 +69,24 @@ describe 'CacheableFlash' do
     it "converts flash value to string before storing in cookie if value is a number" do
       @controller.flash = { 'quantity' => 5 }
       @controller.write_flash_to_cookie
-      JSON.parse(@controller.cookies['flash']).should == { 'quantity' => "5" }
+      JSON(@controller.cookies['flash']).should == { 'quantity' => "5" }
     end
     
     it "does not convert flash value to string before storing in cookie if value is anything other than a number" do
       @controller.flash = { 'foo' => { 'bar' => 'baz' } }
       @controller.write_flash_to_cookie
-      JSON.parse(@controller.cookies['flash']).should == { 'foo' => { 'bar' => 'baz' } }
+      JSON(@controller.cookies['flash']).should == { 'foo' => { 'bar' => 'baz' } }
     end
     
     it "encodes plus signs in generated JSON before storing in cookie" do
       @controller.flash = { 'notice' => 'Life, Love + Liberty' }
       @controller.write_flash_to_cookie
-      if JSON::VERSION >= "1.6"
+#      puts "JSON::VERSION: #{JSON::VERSION}, #{JSON::VERSION >= "1.6"}"
+#      if JSON::VERSION >= "1.6"
         @controller.cookies['flash'].should == "{\"notice\":\"Life, Love %2B Liberty\"}"
-      else
-        @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
-      end
+#      else
+#        @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
+#      end
     end
 
     it "clears the controller.flash hash provided by Rails" do

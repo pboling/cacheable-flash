@@ -1,10 +1,8 @@
-CacheableFlash
-==============
+= CacheableFlash
 
-cacheable-flash > v0.2 (organized by Peter Boling from many of the community forks)
-aims to be a drop-in replacement for the original cacheable-flash v0.1 (by Pivotal)
-but uses JQuery instead of Prototype.  The idea was to merge forks  to collect the best features and improvements.
-It has also been made compatible with Rails 3, hooked into the asset pipeline for rails 3.1, and turned into a gem.
+Note: This fork, http://github.com/pboling/cacheable-flash, of
+cacheable-flash is where I play with new features & refactoring.  I, pboling, 
+am a maintainer of the the official repository here https://github.com/pivotal/cacheable-flash.
 
 == Installation as plugin
 
@@ -151,8 +149,8 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 
 Licensed under the MIT License.
 
-Copyright (c) 2011-2012 Peter H. Boling (http://peterboling.com). See LICENSE.txt (MIT license) for further details.
-Copyright (c) 2007-2010 Pivotal Labs
+- Copyright (c) 2011-2012 Peter H. Boling (http://peterboling.com). See LICENSE.txt for further details.
+- Copyright (c) 2007-2010 Pivotal Labs
 
 
 

@@ -1,7 +1,11 @@
 # encoding: utf-8
-
+#!/usr/bin/env rake
 require 'rubygems'
-require 'bundler'
+begin
+  require 'bundler/setup'
+rescue LoadError
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+end
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -50,5 +54,24 @@ end
 
 task :default => :spec
 
-require 'yard'
-YARD::Rake::YardocTask.new
+begin
+  require 'rdoc/task'
+rescue LoadError
+  require 'rdoc/rdoc'
+  require 'rake/rdoctask'
+  RDoc::Task = Rake::RDocTask
+end
+
+RDoc::Task.new(:rdoc) do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = "CacheableFlash #{version}"
+  rdoc.options << '--line-numbers'
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
+load 'rails/tasks/engine.rake'
+
+Bundler::GemHelper.install_tasks
