@@ -8,11 +8,7 @@ describe 'CacheableFlash' do
     @controller_class.send(:include, CacheableFlash)
     @controller = @controller_class.new({}, {})
     @cookies = {}
-<<<<<<< HEAD
-    @controller.stub(:cookies).and_return {@cookies}
-=======
     @controller.stub(:cookies).and_return(@cookies)
->>>>>>> pboling/master
   end
 
   describe "#write_flash_to_cookie" do
