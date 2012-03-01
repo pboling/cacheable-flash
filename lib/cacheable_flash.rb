@@ -1,14 +1,6 @@
 require 'json'
 
 module CacheableFlash
-<<<<<<< HEAD
-  require 'rails'
-  if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 0
-    require 'cacheable_flash/rails/railtie'
-  elsif ::Rails.version >= "3.1"
-    require 'cacheable_flash/rails/engine'
-    require 'cacheable_flash/rails/railtie'
-=======
   if defined?(Rails) && ::Rails::VERSION::MAJOR == 3
     if ::Rails::VERSION::MINOR >= 1
       require "cacheable_flash/engine"
@@ -16,7 +8,6 @@ module CacheableFlash
     elsif ::Rails::VERSION::MINOR == 0
       require 'cacheable_flash/railtie'
     end
->>>>>>> pboling/master
   else
     # For older rails use generator
   end
