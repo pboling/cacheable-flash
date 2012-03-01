@@ -1,8 +1,11 @@
 = CacheableFlash
 
-Note: This fork, http://github.com/pboling/cacheable-flash, of
-cacheable-flash is where I play with new features & refactoring.  I, pboling, 
-am a maintainer of the the official repository here https://github.com/pivotal/cacheable-flash.
+== Description
+
+This plugin enables greater levels of page caching by rendering flash
+messages from a cookie using JavaScript, instead of in your Rails
+view template.  Flash contents are converted to JSON and placed in
+a cookie by an after_filter in a controller.
 
 == Installation as plugin
 
@@ -36,13 +39,6 @@ Otherwise, in your layout, just source them like normal:
 The asset pipeline should have access to the assets in this gem via your app/assets/javascripts/application.js:
   //= require flash
   //= require jquery.cookie
-
-== Description
-
-This plugin enables greater levels of page caching by rendering flash
-messages from a cookie using JavaScript, instead of in your Rails
-view template.  Flash contents are converted to JSON and placed in
-a cookie by an after_filter in a controller.
 
 == Mailing List
 
