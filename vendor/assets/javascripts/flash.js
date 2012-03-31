@@ -10,12 +10,16 @@ Flash.transferFromCookies = function() {
   $.cookie('flash',null, {path: '/'});
 };
 
-Flash.writeDataTo = function(name, element) {
+Flash.writeDataTo = function(name, element, callback) {
   element = $(element);
   var content = "";
   if (Flash.data[name]) {
     message = Flash.data[name].toString().replace(/\+/g, ' ');
     element.html(message);
-    element.show();
+    if (callback && typeof(callback) === 'function') {
+      callback(element);
+    } else {
+      element.show();
+    }
   }
 };
