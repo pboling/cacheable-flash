@@ -31,7 +31,7 @@ module CacheableFlash
 
     flash.each do |key, value|
       if cookie_flash[key.to_s].blank?
-        cookie_flash[key.to_s] = value.kind_of?(Numeric) ? value.to_s : value
+        cookie_flash[key.to_s] = value.to_s
       else
         cookie_flash[key.to_s] << "<br/>#{value}"
       end
@@ -39,6 +39,8 @@ module CacheableFlash
     # Base must define cookies, as in Rails
     cookies['flash'] = cookie_flash.to_json.gsub("+", "%2B")
     # Base must define flash, as in Rails
+    # TODO: Does not support flash.now feature of the FlashHash in Rails, 
+    #       because flashes are only removed from cookies when they are used.
     flash.clear
   end
 end
