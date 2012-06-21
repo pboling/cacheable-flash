@@ -23,10 +23,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = %Q{Render flash messages from a cookie using JavaScript, instead of in your Rails
 view template}
-  gem.description = %Q{This plugin enables greater levels of page caching by rendering flash
-messages from a cookie using JavaScript, instead of in your Rails
-view template.  Flash contents are converted to JSON and placed in
-a cookie by an after_filter in a controller.}
+  gem.description = %Q{Allows caching of pages with flash messages by rendering flash\nmessages from a cookie using JavaScript, instead of statically in your Rails\nview template.  Flash contents are converted to JSON and placed in\na cookie by an after_filter in a controller.}
   gem.email = "peter.boling@gmail.com"
   gem.authors = ["Peter H. Boling","Brian Takita"]
   # dependencies defined in Gemfile
