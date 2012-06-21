@@ -121,7 +121,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (>= 1.0.21)
+  bundler (>= 1.0.24)
   jeweler (>= 1.6.4)
   jquery-rails
   json

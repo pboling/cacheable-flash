@@ -15,7 +15,7 @@ group :development, :test do
 
   gem "rspec-rails", ">= 2.8.0"
   gem "rdoc", ">= 3.12"
-  gem "bundler", ">= 1.0.21"
+  gem "bundler", ">= 1.0.24"
   gem "jeweler", ">= 1.6.4"
   gem "reek", ">= 1.2.8"
   gem "roodi", ">= 2.1.0"
