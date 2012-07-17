@@ -30,6 +30,7 @@ module CacheableFlash
     end
 
     flash.each do |key, value|
+      value = ERB::Util.html_escape(value) unless value.is_a?(Hash) || value.html_safe?
       if cookie_flash[key.to_s].blank?
         cookie_flash[key.to_s] = value.kind_of?(Numeric) ? value.to_s : value
       else

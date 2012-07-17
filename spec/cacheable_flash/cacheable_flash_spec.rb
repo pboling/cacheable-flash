@@ -95,6 +95,18 @@ describe 'CacheableFlash' do
 
       @controller.flash.should == {}
     end
+    
+    it "escapes HTML if the flash value is not html safe" do
+      @controller.flash = { 'quantity' => "<div>foobar</div>" }
+      @controller.write_flash_to_cookie
+      JSON(@controller.cookies['flash']).should == { 'quantity' => "&lt;div&gt;foobar&lt;/div&gt;" }
+    end
+    
+    it "does not escape flash HTML if the value is html safe" do
+      @controller.flash = { 'quantity' => '<div>foobar</div>'.html_safe }
+      @controller.write_flash_to_cookie
+      JSON(@controller.cookies['flash']).should == { 'quantity' => "<div>foobar</div>" }
+    end
   end
 
   describe ".included" do
