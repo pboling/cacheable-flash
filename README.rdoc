@@ -1,3 +1,4 @@
+
 = CacheableFlash
 
 == Description
@@ -5,7 +6,8 @@
 This plugin enables greater levels of page caching by rendering flash
 messages from a cookie using JavaScript, instead of in your Rails
 view template.  Flash contents are converted to JSON and placed in
-a cookie by an after_filter in a controller.
+a cookie by an after_filter in a controller or a Rack middleware in
+your application.
 
 == Installation as plugin
 
@@ -54,9 +56,10 @@ Please help document!
 
 https://github.com/pivotal/cacheable-flash/wiki
 
-=== Usage
+== Usage as an around filter
 
-To use, include the CacheableFlash module in your controller.
+To use as an around filter, include the CacheableFlash module
+in your controller.
 It's all or none on the actions in your controller, so you can't
 mix JS and HTML display of your flash message in a controller.
 No other modifications to the controller are needed.  You will need
@@ -69,12 +72,27 @@ as happens normally).
 
 === Example Controller
 
-class MyController < ActionController::Base
-  include CacheableFlash
-  # ...
-end
+  class MyController < ActionController::Base
+    include CacheableFlash
+    # ...
+  end
 
-=== Example Template Markup
+== Usage as a Rack middleware (requires Rails 3)
+
+To use as a Rack Middleware, swap the Rails flash middleware with the
+Cacheable flash middleware.
+Use this method if you set flash messages inside a rescue_from block:
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
+=== In your application.rb:
+
+  # Swap the ActionDispatch::Flash middleware with the CacheableFlash one
+  config.middleware.swap ActionDispatch::Flash, CacheableFlash::Middleware
+
+== Example Template Markup
 
   <div id="error_div_id" class="flash flash_error"></div>
   <div id="notice_div_id" class="flash flash_notice"></div>
