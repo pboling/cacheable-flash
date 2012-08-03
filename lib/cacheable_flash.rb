@@ -2,15 +2,15 @@ require 'json'
 
 module CacheableFlash
   if defined?(Rails) && ::Rails::VERSION::MAJOR == 3
-    if ::Rails::VERSION::MINOR >= 1
-      require "cacheable_flash/engine"
-      require 'cacheable_flash/railtie'
-    elsif ::Rails::VERSION::MINOR == 0
-      require 'cacheable_flash/railtie'
-    end
-  else
+    require 'cacheable_flash/middleware'
+    require 'cacheable_flash/engine' if ::Rails::VERSION::MINOR >= 1
+    require 'cacheable_flash/railtie'
+  else 
     # For older rails use generator
   end
+
+  require 'cacheable_flash/cookie_flash'
+  include CookieFlash
 
   def self.included(base)
     #base must define around_filter, as in Rails
@@ -19,26 +19,9 @@ module CacheableFlash
 
   def write_flash_to_cookie
     yield if block_given?
-    cookie_flash = if cookies['flash']
-      begin
-        JSON(cookies['flash'])
-      rescue
-        {}
-      end
-    else
-      {}
-    end
 
-    flash.each do |key, value|
-      value = ERB::Util.html_escape(value) unless value.is_a?(Hash) || value.html_safe?
-      if cookie_flash[key.to_s].blank?
-        cookie_flash[key.to_s] = value.kind_of?(Numeric) ? value.to_s : value
-      else
-        cookie_flash[key.to_s] << "<br/>#{value}"
-      end
-    end
     # Base must define cookies, as in Rails
-    cookies['flash'] = cookie_flash.to_json.gsub("+", "%2B")
+    cookies['flash'] = cookie_flash(flash, cookies)
     # Base must define flash, as in Rails
     # TODO: Does not support flash.now feature of the FlashHash in Rails, 
     #       because flashes are only removed from cookies when they are used.
