@@ -1,5 +1,4 @@
-
-= CacheableFlash
+= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pivotal/cacheable-flash]
 
 == Description
 
