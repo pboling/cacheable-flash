@@ -1,3 +1,11 @@
+# gem generated
+*.gem
+Gemfile.lock
+
+# bundle generated
+.bundle
+lib/bundler/man
+
 # rcov generated
 coverage
 
@@ -27,30 +35,39 @@ pkg
 #
 # For MacOS:
 #
-#.DS_Store
+.DS_Store
 
 # For TextMate
-#*.tmproj
-#tmtags
+*.tmproj
+tmtags
 
 # For RubyMine
-#.idea
+.idea
 
 # For emacs:
-#*~
-#\#*
-#.\#*
+*~
+\#*
+.\#*
 
 # For vim:
-#*.swp
+*.swp
 
 # For redcar:
-#.redcar
+.redcar
 
 # For rubinius:
-#*.rbc
+*.rbc
 
-.bundle/
+# From bundle gem my_gem's .gitignore (good practice?)
+.config
+InstalledFiles
+doc/
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+# Other
 log/*.log
 spec/dummy/db/*.sqlite3
 spec/dummy/log/*.log
