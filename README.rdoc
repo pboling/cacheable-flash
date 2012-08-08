@@ -1,4 +1,4 @@
-= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pivotal/cacheable-flash]
+= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pivotal/cacheable-flash] {<img src="https://secure.travis-ci.org/pboling/cacheable-flash.png?branch=master" alt="Build Status" />}[http://travis-ci.org/pboling/cacheable-flash]
 
 == Description
 
