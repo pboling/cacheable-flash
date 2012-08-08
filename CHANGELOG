@@ -1,3 +1,8 @@
+0.2.9 - AUG.08.2012
+- More rearranging
+- Improved integration test of CacheableFlash & CacheableFlash::TestHelpers
+- Updated to latest jquery.cookie
+
 0.2.8 - AUG.07.2012
 - switch from jeweler to gem-release for bumping and tagging
 - bundler update (1.0.24)
