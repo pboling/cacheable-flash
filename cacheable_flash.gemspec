@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = "Allows caching of pages with flash messages by rendering flash\nmessages from a cookie using JavaScript, instead of statically in your Rails\nview template.  Flash contents are converted to JSON and placed in\na cookie by an after_filter (default) or a Rack Middleware (option)."
   s.email = "peter.boling@gmail.com"
   s.extra_rdoc_files = [
-    "LICENSE.txt",
+    "LICENSE",
     "README.rdoc"
   ]
   s.files         = `git ls-files`.split($\)
