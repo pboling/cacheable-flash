@@ -1,3 +1,19 @@
+0.2.8 - AUG.07.2012
+- switch from jeweler to gem-release for bumping and tagging
+- bundler update (1.0.24)
+- Escape HTML in flash values unless they're html_safe
+- Add CacheableFlash rack middleware
+
+0.2.7 - JUN.21.2012
+- Note: Does not support flash.now feature of the FlashHash in Rails
+- Corrected directory names for controllers/layouts
+
+0.2.6 - unreleased
+- all specs pass with rspec 2.10
+
+0.2.5 - MAR.01.2012
+- Real integration test!
+
 0.2.4 - FEB.27.2012
 - Dependency diet!  No longer requires all of rails - only railties.
 
@@ -7,14 +23,14 @@
 - Updated specs, to running and passing condition!
 - Made rails > 3.0 a dependency, since it is (uses ::Rails::Engine and :Rails::Railtie)
 
-0.2.2
+0.2.2 - SEP.10.2011
 - Improved deprecation warnings about using the generator (not needed with asset pipeline)
 - Improved README setup instructions
 
-0.2.1
+0.2.1 - SEP.10.2011
 - Fixed bug in generator for those not using asset pipeline, or pre Rails 3.1
 
-0.2.0 [Peter Boling begins gemification process]
+0.2.0 - SEP.10.2011 [Peter Boling begins gemification process]
 - Converted to a gem
 - Updated to improved, patched jquery.cookie from https://github.com/pboling/jquery-cookie
 - Merged a few other forks of cacheable-flash
