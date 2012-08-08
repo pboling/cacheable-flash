@@ -1,4 +1,5 @@
 class DummyController < ApplicationController
+  include CacheableFlash
   def index
     expected_flash = {
     'errors' => "This is an Error",

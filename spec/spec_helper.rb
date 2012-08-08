@@ -16,7 +16,7 @@ require 'cacheable_flash'
 #$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 #$LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'support/test_helpers'
+require 'cacheable_flash/test_helpers'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
