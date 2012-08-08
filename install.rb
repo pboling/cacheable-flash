@@ -1,5 +1,5 @@
 # Only executed when installed as plugin.
-# When installed as a gem must use the generator, unless using Rails >= 3.1,
+# When installed as a gem must use the generator, unless using Rails >= 3.1 and asset pipeline,
 #   in which case the asset pipeline takes care of everything
 require 'fileutils'
 include FileUtils

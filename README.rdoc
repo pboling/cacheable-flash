@@ -8,16 +8,16 @@ view template.  Flash contents are converted to JSON and placed in
 a cookie by an after_filter in a controller or a Rack middleware in
 your application.
 
-== Installation as plugin
-
-ruby script/plugin install git://github.com/pivotal/cacheable-flash.git
-
 == Installation as gem
 
 gem install 'cacheable_flash'
 
 add to your Gemfile:
 gem 'cacheable_flash'
+
+== Installation as plugin (For old Rails)
+
+ruby script/plugin install git://github.com/pivotal/cacheable-flash.git
 
 == Setup
 
@@ -161,7 +161,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 
 Licensed under the MIT License.
 
-- Copyright (c) 2011-2012 Peter H. Boling (http://peterboling.com). See LICENSE.txt for further details.
+- Copyright (c) 2011-2012 Peter H. Boling (http://peterboling.com). See LICENSE for further details.
 - Copyright (c) 2007-2010 Pivotal Labs
 
 

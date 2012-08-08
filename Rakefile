@@ -1,34 +1,7 @@
 # encoding: utf-8
 #!/usr/bin/env rake
-require 'rubygems'
-begin
-  require 'bundler/setup'
-rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
-end
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
+require "bundler/gem_tasks"
 require 'rake'
-
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "cacheable_flash"
-  gem.homepage = "http://github.com/pivotal/cacheable-flash"
-  gem.license = "MIT"
-  gem.summary = %Q{Render flash messages from a cookie using JavaScript, instead of in your Rails
-view template}
-  gem.description = %Q{Allows caching of pages with flash messages by rendering flash\nmessages from a cookie using JavaScript, instead of statically in your Rails\nview template.  Flash contents are converted to JSON and placed in\na cookie by an after_filter in a controller.}
-  gem.email = "peter.boling@gmail.com"
-  gem.authors = ["Peter H. Boling","Brian Takita"]
-  # dependencies defined in Gemfile
-end
-Jeweler::RubygemsDotOrgTasks.new
 
 require 'rspec/core'
 require 'rspec/core/rake_task'
@@ -69,6 +42,5 @@ RDoc::Task.new(:rdoc) do |rdoc|
 end
 
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
-load 'rails/tasks/engine.rake'
 
 Bundler::GemHelper.install_tasks
