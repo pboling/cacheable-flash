@@ -1,3 +1,7 @@
+## Testing the cookie is now notoriously difficult, and entirely undocumented for Rails 3.2:
+## https://www.relishapp.com/rspec/rspec-rails/docs/controller-specs/cookies
+## CacheableFlash::TestHelpers is now integration tested in the controllers/dummy_controller_spec.rb
+#
 #require 'spec_helper'
 #
 #module CacheableFlash

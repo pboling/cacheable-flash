@@ -3,8 +3,8 @@ require 'json'
 module CacheableFlash
   module TestHelpers
     def flash_cookie
-      return {} unless cookies['flash']
-      JSON(cookies['flash'])
+      return {} unless response.cookies['flash']
+      JSON(response.cookies['flash'])
     rescue JSON::ParserError
       {}
     end

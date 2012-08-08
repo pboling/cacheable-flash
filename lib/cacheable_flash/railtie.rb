@@ -3,7 +3,7 @@ module CacheableFlash
   class Railtie < ::Rails::Railtie
     if ::Rails::VERSION::MAJOR == 3
       config.before_configuration do
-        config.action_view.javascript_expansions[:cacheable_flash] = %w(flash jquery.cookie)
+        config.action_view.javascript_expansions[:cacheable_flash] = %w(jquery.cookie flash)
       end
     end
   end
