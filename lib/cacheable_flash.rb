@@ -5,7 +5,7 @@ module CacheableFlash
     require 'cacheable_flash/middleware'
     require 'cacheable_flash/engine' if ::Rails::VERSION::MINOR >= 1
     require 'cacheable_flash/railtie'
-  else 
+  else
     # For older rails use generator
   end
 
