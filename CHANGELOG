@@ -2,6 +2,10 @@
 - Split test_helpers from rspec_matchers (test_helpers may be useful in TestUnit
 - When using Middleware: Flash Cookies now stay in the cookie until cleared out by the javascript: closer to guaranteed delivery.
 - Improved spec suite
+- Added CacheableFlash::Config class
+  - Configuration of :append_as now possible
+- Added facets runtime dependency
+- corrected namespace of CacheableFlash::CookieFlash
 
 0.2.9 - AUG.08.2012
 - More rearranging

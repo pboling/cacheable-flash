@@ -1,7 +1,7 @@
 module CacheableFlash
   class Middleware
     require 'cacheable_flash/cookie_flash'
-    include CookieFlash
+    include CacheableFlash::CookieFlash
     FLASH_HASH_KEY = "action_dispatch.request.flash_hash".freeze
 
     def initialize(app)

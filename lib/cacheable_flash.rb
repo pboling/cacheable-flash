@@ -9,8 +9,9 @@ module CacheableFlash
     # For older rails use generator
   end
 
+  require 'cacheable_flash/config'
   require 'cacheable_flash/cookie_flash'
-  include CookieFlash
+  include CacheableFlash::CookieFlash
 
   def self.included(base)
     #base must define around_filter, as in Rails

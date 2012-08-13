@@ -2,9 +2,10 @@ require 'cacheable_flash/test_helpers'
 
 module CacheableFlash
   module RspecMatchers
+    include CacheableFlash::TestHelpers
     RSpec::Matchers.define :have_flash_cookie do |flash_status, regex|
       define_method :has_flash_cookie? do |response|
-        regex = /^#{Regexp.escape(regex)}$/ if regex.is_a?(String)
+        regex = /#{Regexp.escape(regex)}/ if regex.is_a?(String)
 
         cook = begin
           response.cookies['flash'] ?
