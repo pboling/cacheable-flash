@@ -1,3 +1,8 @@
+0.2.10 - AUG.13.2012
+- Split test_helpers from rspec_matchers (test_helpers may be useful in TestUnit
+- When using Middleware: Flash Cookies now stay in the cookie until cleared out by the javascript: closer to guaranteed delivery.
+- Improved spec suite
+
 0.2.9 - AUG.08.2012
 - More rearranging
 - Improved integration test of CacheableFlash & CacheableFlash::TestHelpers
