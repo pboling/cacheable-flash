@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<json>, [">= 0"])
   s.add_development_dependency(%q<rails>, ["~> 3.1.3"])
   s.add_development_dependency(%q<jquery-rails>, [">= 0"])
-  s.add_development_dependency(%q<rspec-rails>, [">= 2.8.0"])
+  s.add_development_dependency(%q<rspec-rails>, [">= 2.11.0"])
   s.add_development_dependency(%q<rdoc>, [">= 3.12"])
   s.add_development_dependency(%q<bundler>, [">= 1.0.24"])
   s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
