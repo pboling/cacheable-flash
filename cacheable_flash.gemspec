@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = "1.8.24"
   s.summary = "Render flash messages from a cookie using JavaScript, instead of in your Rails view template"
 
-  s.add_runtime_dependency(%q<stackable_flash>, [">= 0.0.4"])
+  s.add_runtime_dependency(%q<stackable_flash>, [">= 0.0.7"])
   s.add_runtime_dependency(%q<json>, [">= 0"])
   s.add_development_dependency(%q<rails>, ["~> 3.1.3"])
   s.add_development_dependency(%q<jquery-rails>, [">= 0"])
