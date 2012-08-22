@@ -8,6 +8,7 @@
 - Allows any data type to be stored in the cookie.  Only escapes strings.
   - Does not convert flash value to string before storing in cookie if value is a number
   - (v0.2.X converted everything to string)
+- the CacheableFlash::Config class is experimental, and no code uses the config settings yet.
 
 0.2.10 - AUG.13.2012
 - Split test_helpers from rspec_matchers (test_helpers may be useful in TestUnit
