@@ -1,4 +1,4 @@
-0.2.11 - AUG.21.2012
+0.3.0 - AUG.21.2012
 - Completed integration with stackable_flash (http://github.com/pboling/stackable_flash)
 - Test::Unit helpers and Rspec Matchers updated to be stackable
 - Expanded test suite
