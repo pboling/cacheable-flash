@@ -1,3 +1,10 @@
+0.3.1 - AUG.22.2012
+* Add specs for non stacking use [Peter Boling]
+* Use stackable_flash/test_helpers instead of reinventing the wheel [Peter Boling]
+* Config now works! [Peter Boling]
+* Update to stackable_flash 0.0.7 (working config) [Peter Boling]
+* default to non stacking [Peter Boling]
+
 0.3.0 - AUG.21.2012
 - Completed integration with stackable_flash (http://github.com/pboling/stackable_flash)
 - Test::Unit helpers and Rspec Matchers updated to be stackable
