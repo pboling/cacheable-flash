@@ -10,6 +10,14 @@ module CacheableFlash
     # For older rails use generator
   end
 
+  # By default stacking is false, but it can be turned on with:
+  # CacheableFlash.configure do |config|
+  #   config[:stacking] = true
+  #   config[:append_as] = :br
+  # end
+  StackableFlash.stacking = false
+
+  # The configure will override the above default
   require 'cacheable_flash/config'
   require 'cacheable_flash/cookie_flash'
   include CacheableFlash::CookieFlash
