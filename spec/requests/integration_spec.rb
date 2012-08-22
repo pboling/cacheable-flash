@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe DummyController do
+  before(:each) do
+    CacheableFlash::Config.configure do |config|
+      config[:stacking] = true
+    end
+  end
+  after(:each) do
+    StackableFlash.stacking = false
+  end
 
   describe "cookie flash is sticky" do
     it "should not clear after request" do # because they are only cleared out by javascripts
@@ -55,4 +63,10 @@ describe DummyController do
     get "/dummy/cold_boot"
     response.should have_flash_cookie('notice',['original','message','another'])
   end
+
+  it "should allow use of have_cacheable_flash matcher" do
+    get "/dummy/cold_boot"
+    lambda {response.should have_cacheable_flash('notice',['original','message','another'])}.should_not raise_exception
+  end
+
 end
