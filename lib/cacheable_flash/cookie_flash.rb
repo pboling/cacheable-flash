@@ -1,32 +1,27 @@
 module CacheableFlash
   module CookieFlash
     def cookie_flash(flash, cookies)
-      cookie_flash = (JSON(cookies['flash']) if cookies['flash']) || {} rescue {}
-
+      cflash = (JSON.parse(cookies['flash']) if cookies['flash']) || {} rescue {}
       flash.each do |key, value|
-        value = ERB::Util.html_escape(value) unless value.is_a?(Hash) || value.html_safe?
-        if cookie_flash[key.to_s].blank?
-          value_as_string = value.kind_of?(Numeric) ? value.to_s : value
-          case CacheableFlash::Config[:append_as]
-            when :br then
-              cookie_flash[key.to_s] = value_as_string
-            when :array then
-              cookie_flash[key.to_s] = Array(value_as_string)
-            else
-              raise "CacheableFlash: #{CacheableFlash::Config.config[:append_as]} is not a valid value for CacheableFlash::Config.config[:append_as]"
+        # Since v0.3.0 only escaping strings
+        if value.kind_of?(String)
+          value = ERB::Util.html_escape(value) unless value.html_safe?
+        end
+        # This allows any data type to be stored in the cookie; important for using an array as the value with
+        # stackable_flash
+        skey = key.to_s
+        if cflash[skey].kind_of?(Array) # Stackable!!!
+          if value.kind_of?(Array)
+            cflash[skey] += value # Add the values from the other array, which is already a stackable flash
+          else
+            cflash[skey] << value
           end
         else
-          case CacheableFlash::Config[:append_as]
-            when :br then
-              cookie_flash[key.to_s] << "<br/>#{value}"
-            when :array then
-              cookie_flash[key.to_s] << "#{value}"
-            else
-              raise "CacheableFlash: #{CacheableFlash::Config.config[:append_as]} is not a valid value for CacheableFlash::Config.config[:append_as]"
-          end
+          cflash[skey] = value
         end
       end
-      cookie_flash.to_json.gsub("+", "%2B")
+      # I have forgotten why the gsub + matters, so NOTE: to future self: document weird shit.
+      cflash.to_json.gsub("+", "%2B")
     end
   end
 end

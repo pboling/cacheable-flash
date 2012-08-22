@@ -1,4 +1,5 @@
 require 'json'
+require 'stackable_flash'
 
 module CacheableFlash
   if defined?(Rails) && ::Rails::VERSION::MAJOR == 3

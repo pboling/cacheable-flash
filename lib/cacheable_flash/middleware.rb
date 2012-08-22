@@ -12,26 +12,27 @@ module CacheableFlash
     #   to ensure they are seen and not lost, so we grab them from the rails flash hash, or the request cookies
     def call(env)
       status, headers, body = @app.call(env)
-      flash = env[FLASH_HASH_KEY]
+      env_flash = env[FLASH_HASH_KEY]
 
-      if flash
+      if env_flash
         response = Rack::Response.new(body, status, headers)
         cookies = env["rack.cookies"] || {}
-        response.set_cookie("flash", { :value => cookie_flash(flash, cookies), :path => "/" })
+        response.set_cookie("flash", { :value => cookie_flash(env_flash, cookies), :path => "/" })
         response.finish
       else
         request = ActionDispatch::Request.new(env)
-        cookie_flash = request.respond_to?(:cookie_jar) ?
+        cflash = request.respond_to?(:cookie_jar) ?
           request.cookie_jar['flash'] :
           nil
-        if cookie_flash
+        if cflash
           response = Rack::Response.new(body, status, headers)
-          response.set_cookie("flash", { :value => cookie_flash, :path => "/" })
+          response.set_cookie("flash", { :value => cflash, :path => "/" })
           response.finish
         else
-          [status, headers, body]
+          response = body
         end
       end
+      [status, headers, response]
     end
 
   end

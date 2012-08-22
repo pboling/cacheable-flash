@@ -41,8 +41,8 @@ describe 'CacheableFlash' do
           @controller.write_flash_to_cookie
 
           expected_flash = {
-            'notice' => "Existing notice<br/>New notice",
-            'errors' => "Existing errors<br/>New errors",
+            'notice' => "New notice",
+            'errors' => "New errors",
           }
           JSON(@controller.cookies['flash']).should == expected_flash
         end
@@ -65,7 +65,7 @@ describe 'CacheableFlash' do
     it "converts flash value to string before storing in cookie if value is a number" do
       @controller.flash = { 'quantity' => 5 }
       @controller.write_flash_to_cookie
-      JSON(@controller.cookies['flash']).should == { 'quantity' => "5" }
+      JSON(@controller.cookies['flash']).should == { 'quantity' => 5 }
     end
     
     it "does not convert flash value to string before storing in cookie if value is anything other than a number" do
@@ -77,12 +77,19 @@ describe 'CacheableFlash' do
     it "encodes plus signs in generated JSON before storing in cookie" do
       @controller.flash = { 'notice' => 'Life, Love + Liberty' }
       @controller.write_flash_to_cookie
-#      puts "JSON::VERSION: #{JSON::VERSION}, #{JSON::VERSION >= "1.6"}"
-#      if JSON::VERSION >= "1.6"
-        @controller.cookies['flash'].should == "{\"notice\":\"Life, Love %2B Liberty\"}"
-#      else
-#        @controller.cookies['flash'].should == "{\"notice\": \"Life, Love %2B Liberty\"}"
-#      end
+      @controller.cookies['flash'].should == "{\"notice\":\"Life, Love %2B Liberty\"}"
+    end
+
+    it "escapes strings when not html safe" do
+      @controller.flash = { 'notice' => '<em>Life, Love + Liberty</em>' } # Not html_safe, so it will be escaped
+      @controller.write_flash_to_cookie
+      @controller.cookies['flash'].should == "{\"notice\":\"&lt;em&gt;Life, Love %2B Liberty&lt;/em&gt;\"}"
+    end
+
+    it "does not escape strings that are html_safe" do
+      @controller.flash = { 'notice' => '<em>Life, Love + Liberty</em>'.html_safe } # html_safe so it will not be escaped
+      @controller.write_flash_to_cookie
+      @controller.cookies['flash'].should == "{\"notice\":\"<em>Life, Love %2B Liberty</em>\"}"
     end
 
     it "clears the controller.flash hash provided by Rails" do
