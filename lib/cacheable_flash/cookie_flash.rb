@@ -7,10 +7,10 @@ module CacheableFlash
         if value.kind_of?(String)
           value = ERB::Util.html_escape(value) unless value.html_safe?
         end
+        skey = key.to_s
         # This allows any data type to be stored in the cookie; important for using an array as the value with
         # stackable_flash
-        skey = key.to_s
-        if cflash[skey].kind_of?(Array) # Stackable!!!
+        if cflash[skey].kind_of?(Array) # Already Stackable!!!
           if value.kind_of?(Array)
             cflash[skey] += value # Add the values from the other array, which is already a stackable flash
           else
