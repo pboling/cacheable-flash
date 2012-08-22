@@ -1,33 +1,36 @@
-require 'cacheable_flash/test_helpers'
+require 'stackable_flash/test_helpers'   # Used in the definition of these matchers
+require 'stackable_flash/rspec_matchers' # Not used here, but for convenience
+require 'cacheable_flash/test_helpers'   # Used in the definition of these matchers
 
 module CacheableFlash
   module RspecMatchers
+    include StackableFlash::TestHelpers
     include CacheableFlash::TestHelpers
     RSpec::Matchers.define :have_flash_cookie do |flash_status, expecting|
       define_method :has_flash_cookie? do |response|
-        flash = testable_flash(response)[flash_status]
-        if flash.kind_of?(Array)
-          if expecting.kind_of?(Array)
-            flash == expecting
-          else
-            matches = flash.select do |to_check|
-              to_check == expecting
-            end
-            matches.length > 0
-          end
-        else
-          flash == expecting
-        end
+        flash_in_stack(testable_flash(response)[flash_status], expecting)
       end
-
       match{|response| has_flash_cookie?(response)}
-
       failure_message_for_should do |actual|
-        "expected that flash cookie :#{expected[0]} #{testable_flash(actual)[expected[0]]} would include #{expected[1].inspect}"
+        "expected flash[:#{expected[0]}] to be or include #{expected[1].inspect}, but got #{testable_flash(actual)[expected[0]]}"
       end
       failure_message_for_should_not do |actual|
-        "expected that flash cookie :#{expected[0]} #{testable_flash(actual)[expected[0]]} would not include #{expected[1].inspect}"
+        "expected flash[:#{expected[0]}] to not be and not include #{expected[1].inspect}, but got #{testable_flash(actual)[expected[0]]}"
       end
     end
+
+    RSpec::Matchers.define :have_cacheable_flash do |flash_status, expecting|
+      define_method :has_cacheable_flash? do |response|
+        flash_in_stack(testable_flash(response)[flash_status], expecting)
+      end
+      match{|response| has_cacheable_flash?(response)}
+      failure_message_for_should do |actual|
+        "expected flash[:#{expected[0]}] to be or include #{expected[1].inspect}, but got #{testable_flash(actual)[expected[0]]}"
+      end
+      failure_message_for_should_not do |actual|
+        "expected flash[:#{expected[0]}] to not be and not include #{expected[1].inspect}, but got #{testable_flash(actual)[expected[0]]}"
+      end
+    end
+
   end
 end
