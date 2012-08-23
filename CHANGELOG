@@ -1,3 +1,6 @@
+0.3.2 - AUG.23.2012
+* Properly handles stacked flash in cookie flash according to config :append_as option [Peter Boling]
+
 0.3.1 - AUG.22.2012
 * Add specs for non stacking use [Peter Boling]
 * Use stackable_flash/test_helpers instead of reinventing the wheel [Peter Boling]
