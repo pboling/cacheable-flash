@@ -21,17 +21,19 @@ module CacheableFlash
       yield @config
       if @config[:stacking]
         StackableFlash.stacking = true
-        StackableFlash::Config.configure do
-            # by default behave like regular non-stacking flash
+        StackableFlash::Config.configure do |config|
+          # by default behave like regular non-stacking flash
           if @config[:append_as].respond_to?(:call)
-            @config[:stack_with_proc] = @config[:append_as]
+            config[:stack_with_proc] = @config[:append_as]
           else
-            @config[:stack_with_proc] = case @config[:append_as]
-              when :br then Proc.new {|arr| arr.join('<br/>') }
-              when :array then Proc.new {|arr| arr }
-              when :p then Proc.new {|arr| arr.map! {|x| "<p>#{x}</p>"}.join }
-              when :ul then Proc.new {|arr| '<ul>' + arr.map! {|x| "<li>#{x}</li>"}.join + '</ul>' }
-              when :ol then Proc.new {|arr| '<ol>' + arr.map! {|x| "<li>#{x}</li>"}.join + '</ol>' }
+            config[:stack_with_proc] = case @config[:append_as]
+              # Escape as many strings as we can!
+              when :br then Proc.new {|arr| arr.map { |x| x.kind_of?(String) && !x.html_safe? ? ERB::Util.html_escape(x) : x }.join('<br/>') }
+              when :array then Proc.new {|arr| arr.map { |x| x.kind_of?(String) && !x.html_safe? ? ERB::Util.html_escape(x) : x } }
+              when :p then Proc.new {|arr| arr.map! {|x| "<p>#{x.kind_of?(String) && !x.html_safe? ? ERB::Util.html_escape(x) : x }</p>"}.join }
+              when :ul then Proc.new {|arr| '<ul>' + arr.map! {|x| "<li>#{x.kind_of?(String) && !x.html_safe? ? ERB::Util.html_escape(x) : x }</li>"}.join + '</ul>' }
+              when :ol then Proc.new {|arr| '<ol>' + arr.map! {|x| "<li>#{x.kind_of?(String) && !x.html_safe? ? ERB::Util.html_escape(x) : x }</li>"}.join + '</ol>' }
+              else Proc.new {|arr| arr.map { |x| x.kind_of?(String) && !x.html_safe? ? ERB::Util.html_escape(x) : x }.join('<br/>') }
             end
           end
         end

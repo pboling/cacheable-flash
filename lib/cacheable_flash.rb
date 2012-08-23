@@ -13,7 +13,7 @@ module CacheableFlash
   # By default stacking is false, but it can be turned on with:
   # CacheableFlash.configure do |config|
   #   config[:stacking] = true
-  #   config[:append_as] = :br
+  #   config[:append_as] = :br # Pick a value, set your own proc, or don't: passes the JSON'd array to the cookie
   # end
   StackableFlash.stacking = false
 
@@ -36,5 +36,10 @@ module CacheableFlash
     # TODO: Does not support flash.now feature of the FlashHash in Rails, 
     #       because flashes are only removed from cookies when they are used.
     flash.clear
+  end
+
+  # simply abstracts the StackableFlash.stacking method
+  def self.stacking
+    StackableFlash.stacking
   end
 end

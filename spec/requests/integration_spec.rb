@@ -4,6 +4,7 @@ describe DummyController do
   before(:each) do
     CacheableFlash::Config.configure do |config|
       config[:stacking] = true
+      config[:append_as] = :array
     end
   end
   after(:each) do
