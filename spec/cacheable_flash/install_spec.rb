@@ -1,4 +1,5 @@
-#This should only be tested for older rails when the generator is used, so commenting out for now.
+# This should only be tested for older rails when the generator is used, so commenting out for now.
+# Will probably just delete.
 
 #require 'spec_helper'
 #
