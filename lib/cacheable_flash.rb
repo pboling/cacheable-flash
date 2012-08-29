@@ -6,7 +6,7 @@ module CacheableFlash
     require 'cacheable_flash/middleware'
 
     # Since rails 3.0 doesn't have engine support
-    if ::Rails::VERSION::MAJOR > 3 || ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MAJOR >= 1
+    if (::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MAJOR >= 1) || ::Rails.VERSION::MAJOR > 3
       require 'cacheable_flash/engine'
     end
 
