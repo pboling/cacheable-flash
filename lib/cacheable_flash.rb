@@ -2,7 +2,7 @@ require 'json'
 require 'stackable_flash'
 
 module CacheableFlash
-  if defined?(Rails) && ::Rails::VERSION::MAJOR >= 3
+  if defined?(Rails) && (::Rails::VERSION::MAJOR == 3 || ::Rails.VERSION::MAJOR > 3)
     require 'cacheable_flash/middleware'
 
     # Since rails 3.0 doesn't have engine support
