@@ -13,7 +13,8 @@ module CacheableFlash
     # Rails 3.0 doesn't have an asset pipeline, so we copy in javascript files
     desc "Copies some JS files to public/javascripts/"
     def copy_files
-      if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 1
+      # Also raose this deprecation in rails 4
+      if (::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 1) || ::Rails::VERSION::MAJOR > 3
         ActiveSupport::Deprecation.warn("Rails 3.1 has the asset pipeline, so you only need to copy javascript files if you aren't using it.")
       end
       template 'flash.js',     'public/javascripts/flash.js'
