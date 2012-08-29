@@ -4,7 +4,12 @@ require 'stackable_flash'
 module CacheableFlash
   if defined?(Rails) && ::Rails::VERSION::MAJOR >= 3
     require 'cacheable_flash/middleware'
-    require 'cacheable_flash/engine' if ::Rails::VERSION::MINOR >= 1 or ::Rails::VERSION::MAJOR > 3
+
+    # Since rails 3.0 doesn't have engine support
+    if ::Rails::VERSION::MAJOR > 3 || ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MAJOR >= 1
+      require 'cacheable_flash/engine'
+    end
+
     require 'cacheable_flash/railtie'
   else
     # For older rails use generator
