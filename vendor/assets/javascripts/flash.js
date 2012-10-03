@@ -12,7 +12,7 @@ Flash.transferFromCookies = function() {
 
 Flash.writeDataTo = function(name, element, callback) {
   element = $(element);
-  var content = "";
+  var message = "";
   if (Flash.data[name]) {
     message = Flash.data[name].toString().replace(/\+/g, ' ');
     element.html(message);
