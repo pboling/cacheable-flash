@@ -16,10 +16,8 @@ module CacheableFlash
 
       if env_flash
         # There is a flash set from this request, merge it into the cookie flash (which may already be populated)
-        response = Rack::Response.new(body, status, headers)
-        cookies = env["rack.cookies"] || {}
-        response.set_cookie("flash", { :value => cookie_flash(env_flash, cookies), :path => "/" })
-        response.finish
+        cookies = Rack::Request.new(env).cookies
+        Rack::Utils.set_cookie_header!(headers, "flash", :value => cookie_flash(flash, cookies), :path => "/")
       else
         # There is no flash set in this request but there are leftovers from previous requests still in the cookie
         request = ActionDispatch::Request.new(env)
@@ -27,14 +25,10 @@ module CacheableFlash
           request.cookie_jar['flash'] :
           nil
         if cflash
-          response = Rack::Response.new(body, status, headers)
-          response.set_cookie("flash", { :value => cflash, :path => "/" })
-          response.finish
-        else
-          response = body
+          Rack::Utils.set_cookie_header!(headers, "flash", :value => cflash, :path => "/")
         end
       end
-      [status, headers, response]
+      [status, headers, body]
     end
 
   end
