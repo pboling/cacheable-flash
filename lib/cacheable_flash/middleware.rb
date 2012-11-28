@@ -16,6 +16,7 @@ module CacheableFlash
         cookies = Rack::Request.new(env).cookies
         Rack::Utils.set_cookie_header!(headers, "flash", :value => cookie_flash(env_flash, cookies), :path => "/")
       end
+
       [status, headers, body]
     end
 
