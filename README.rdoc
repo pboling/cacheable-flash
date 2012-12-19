@@ -152,7 +152,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 
 == Copyright
 
-Licensed under the MIT License.
+Licensed under the MIT License. See LICENSE for further details.
 
-- Copyright (c) 2011-2012 Peter H. Boling (http://peterboling.com). See LICENSE for further details.
-- Copyright (c) 2007-2010 Pivotal Labs
+- Copyright (c) 2011-2012 Peter H. Boling (http://railsbling.com) {<img src="http://api.coderwall.com/pboling/endorsecount.png" />}[http://coderwall.com/pboling]
+- Copyright (c) 2007-2010 [Pivotal Labs](https://coderwall.com/team/pivotal-labs)
