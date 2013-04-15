@@ -2,18 +2,9 @@ require 'json'
 require 'stackable_flash'
 
 module CacheableFlash
-  if defined?(Rails) && (::Rails::VERSION::MAJOR == 3 || ::Rails.VERSION::MAJOR > 3)
-    require 'cacheable_flash/middleware'
-
-    # Since rails 3.0 doesn't have engine support
-    if (::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MAJOR >= 1) || ::Rails.VERSION::MAJOR > 3
-      require 'cacheable_flash/engine'
-    end
-
-    require 'cacheable_flash/railtie'
-  else
-    # For older rails use generator
-  end
+  require 'cacheable_flash/middleware'
+  require 'cacheable_flash/engine'
+  require 'cacheable_flash/railtie'
 
   # By default stacking is false, but it can be turned on with:
   # CacheableFlash.configure do |config|
