@@ -13,7 +13,9 @@ module CacheableFlash
       :stacking => false, # or true if you want auto-magically stacking flashes
       # Specify how multiple flashes at the same key (e.g. :notice, :errors) should be handled
       # :append_as is ignored if :stacking is false
-      :append_as => :br # or :array, :p, :ul, :ol, or a proc or lambda of your own design
+      :append_as => :br, # or :array, :p, :ul, :ol, or a proc or lambda of your own design
+      # if domain is unspecified, defaults to nil and the request domain is used (see middleware.rb)
+      :domain => nil
     }
 
     @config ||= DEFAULTS
