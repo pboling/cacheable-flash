@@ -14,7 +14,7 @@ module CacheableFlash
       env_flash = env[FLASH_HASH_KEY]
 
       if env_flash
-        @domain = Config.config[:domain] || request.domain
+        @domain = CacheableFlash::Config.config[:domain]
         cookies = Rack::Request.new(env).cookies
         Rack::Utils.set_cookie_header!(headers, "flash", :value => cookie_flash(env_flash, cookies), :path => "/", :domain => @domain)
       end
