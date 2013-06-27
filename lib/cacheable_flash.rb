@@ -1,3 +1,4 @@
+require 'rails'
 require 'json'
 require 'stackable_flash'
 
@@ -17,7 +18,7 @@ module CacheableFlash
   # end
   StackableFlash.stacking = false
 
-  # The configure will override the above default
+  # The configure will override the above defaults
   require 'cacheable_flash/config'
   require 'cacheable_flash/cookie_flash'
   include CacheableFlash::CookieFlash
@@ -30,8 +31,10 @@ module CacheableFlash
   def write_flash_to_cookie
     yield if block_given?
 
+
     # Base must define cookies, as in Rails
-    cookies['flash'] = {:value => cookie_flash(flash, cookies), :domain => '.' << request.domain}
+    domain = CacheableFlash::Config.config[:domain]
+    cookies['flash'] = { :value => cookie_flash(flash, cookies), :domain => domain }
     # Base must define flash, as in Rails
     # TODO: Does not support flash.now feature of the FlashHash in Rails,
     #       because flashes are only removed from cookies when they are used.

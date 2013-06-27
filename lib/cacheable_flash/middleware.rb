@@ -1,5 +1,6 @@
 module CacheableFlash
   class Middleware
+    require 'cacheable_flash/config'
     require 'cacheable_flash/cookie_flash'
     include CacheableFlash::CookieFlash
     FLASH_HASH_KEY = "action_dispatch.request.flash_hash".freeze
@@ -13,8 +14,9 @@ module CacheableFlash
       env_flash = env[FLASH_HASH_KEY]
 
       if env_flash
+        @domain = Config.config[:domain] || request.domain
         cookies = Rack::Request.new(env).cookies
-        Rack::Utils.set_cookie_header!(headers, "flash", :value => cookie_flash(env_flash, cookies), :path => "/")
+        Rack::Utils.set_cookie_header!(headers, "flash", :value => cookie_flash(env_flash, cookies), :path => "/", :domain => @domain)
       end
 
       [status, headers, body]
