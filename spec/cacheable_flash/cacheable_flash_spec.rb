@@ -11,6 +11,11 @@ describe 'CacheableFlash' do
     @controller.stub(:cookies).and_return(@cookies)
   end
 
+  def controller_cookie_flash
+    @controller.cookies['flash'][:value]
+  end
+
+
   describe "#write_flash_to_cookie" do
     context "when there is not an existing flash cookie" do
       it "sets the flash cookie with a JSON representation of the Hash" do
@@ -18,10 +23,10 @@ describe 'CacheableFlash' do
           'errors' => "This is an Error",
           'notice' => "This is a Notice"
         }
-        controller.flash = expected_flash.dup
-        controller.write_flash_to_cookie
+        @controller.flash = expected_flash.dup
+        @controller.write_flash_to_cookie
 
-        JSON(@controller.cookies['flash']).should == expected_flash
+        JSON(controller_cookie_flash).should == expected_flash
       end
     end
 
@@ -44,7 +49,7 @@ describe 'CacheableFlash' do
             'notice' => "New notice",
             'errors' => "New errors",
           }
-          JSON(@controller.cookies['flash']).should == expected_flash
+          JSON(controller_cookie_flash).should == expected_flash
         end
       end
 
@@ -57,7 +62,7 @@ describe 'CacheableFlash' do
 
           @controller.write_flash_to_cookie
 
-          JSON(@cookies['flash']).should == {}
+          JSON(@cookies['flash'][:value]).should == {}
         end
       end
     end
@@ -65,31 +70,31 @@ describe 'CacheableFlash' do
     it "converts flash value to string before storing in cookie if value is a number" do
       @controller.flash = { 'quantity' => 5 }
       @controller.write_flash_to_cookie
-      JSON(@controller.cookies['flash']).should == { 'quantity' => 5 }
+      JSON(controller_cookie_flash).should == { 'quantity' => 5 }
     end
     
     it "does not convert flash value to string before storing in cookie if value is anything other than a number" do
       @controller.flash = { 'foo' => { 'bar' => 'baz' } }
       @controller.write_flash_to_cookie
-      JSON(@controller.cookies['flash']).should == { 'foo' => { 'bar' => 'baz' } }
+      JSON(controller_cookie_flash).should == { 'foo' => { 'bar' => 'baz' } }
     end
     
     it "encodes plus signs in generated JSON before storing in cookie" do
       @controller.flash = { 'notice' => 'Life, Love + Liberty' }
       @controller.write_flash_to_cookie
-      @controller.cookies['flash'].should == "{\"notice\":\"Life, Love %2B Liberty\"}"
+      controller_cookie_flash.should == "{\"notice\":\"Life, Love %2B Liberty\"}"
     end
 
     it "escapes strings when not html safe" do
       @controller.flash = { 'notice' => '<em>Life, Love + Liberty</em>' } # Not html_safe, so it will be escaped
       @controller.write_flash_to_cookie
-      @controller.cookies['flash'].should == "{\"notice\":\"&lt;em&gt;Life, Love %2B Liberty&lt;/em&gt;\"}"
+      controller_cookie_flash.should == "{\"notice\":\"&lt;em&gt;Life, Love %2B Liberty&lt;/em&gt;\"}"
     end
 
     it "does not escape strings that are html_safe" do
       @controller.flash = { 'notice' => '<em>Life, Love + Liberty</em>'.html_safe } # html_safe so it will not be escaped
       @controller.write_flash_to_cookie
-      @controller.cookies['flash'].should == "{\"notice\":\"<em>Life, Love %2B Liberty</em>\"}"
+      controller_cookie_flash.should == "{\"notice\":\"<em>Life, Love %2B Liberty</em>\"}"
     end
 
     it "clears the controller.flash hash provided by Rails" do
@@ -106,13 +111,13 @@ describe 'CacheableFlash' do
     it "escapes HTML if the flash value is not html safe" do
       @controller.flash = { 'quantity' => "<div>foobar</div>" }
       @controller.write_flash_to_cookie
-      JSON(@controller.cookies['flash']).should == { 'quantity' => "&lt;div&gt;foobar&lt;/div&gt;" }
+      JSON(controller_cookie_flash).should == { 'quantity' => "&lt;div&gt;foobar&lt;/div&gt;" }
     end
     
     it "does not escape flash HTML if the value is html safe" do
       @controller.flash = { 'quantity' => '<div>foobar</div>'.html_safe }
       @controller.write_flash_to_cookie
-      JSON(@controller.cookies['flash']).should == { 'quantity' => "<div>foobar</div>" }
+      JSON(controller_cookie_flash).should == { 'quantity' => "<div>foobar</div>" }
     end
   end
 
