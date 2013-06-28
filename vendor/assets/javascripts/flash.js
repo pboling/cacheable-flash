@@ -7,7 +7,7 @@ Flash.transferFromCookies = function() {
   var data = JSON.parse(unescape($.cookie("flash")));
   if(!data) data = {};
   Flash.data = data;
-  $.cookie('flash',null, {path: '/', domain: document.domain});
+  $.removeCookie('flash', {path: '/', domain: document.domain});
 };
 
 Flash.writeDataTo = function(name, element, callback) {
