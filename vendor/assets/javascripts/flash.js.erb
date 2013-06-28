@@ -1,6 +1,4 @@
 // refactoring from https://github.com/leonid-shevtsov/cacheable-flash-jquery
-<% domain = CacheableFlash::Config.config[:domain] %>
-
 var Flash = new Object();
 
 Flash.data = {};
@@ -9,7 +7,7 @@ Flash.transferFromCookies = function() {
   var data = JSON.parse(unescape($.cookie("flash")));
   if(!data) data = {};
   Flash.data = data;
-  $.cookie("flash",null, {path: '/',domain: '<%=domain%>'});
+  $.cookie("flash", null, {path: '/', domain: '<%=CacheableFlash::Config.config[:domain] %>'});
 };
 
 Flash.writeDataTo = function(name, element, callback) {
