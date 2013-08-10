@@ -119,7 +119,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 
     def test_cacheable_flash_action
       get :index
-      asset_equal "In index", flash_cookie["notice"]
+      assert_equal "In index", flash_cookie["notice"]
     end
   end
 
