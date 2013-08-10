@@ -10,7 +10,7 @@ module CacheableFlash
       {}
     end
 
-    def testable_flash(response)
+    def flash_cookie_for(response)
       return {} unless cooked_flash = response.cookies['flash']
       JSON(cooked_flash)
     rescue JSON::ParserError
