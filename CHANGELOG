@@ -1,3 +1,8 @@
+0.3.3 - SEP.13.2013
+* Maintenance release with lots of minor changes and fixes.
+* Main gem should be API compatible.
+* Small changes to test helpers which will require updating tests using them.
+
 0.3.2 - AUG.23.2012
 * Properly handles stacked flash in cookie flash according to config :append_as option [Peter Boling]
 
