@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module CacheableFlash
-  # Copies javascript libraries flash.js and jquery.cookie.js to public/javascripts/ (Rails 3.0.X only, Rails 3.1 has asset pipeline)
+  # Copies javascript libraries flash.js and js.cookie.js to public/javascripts/ (Rails 3.0.X only, Rails 3.1 has asset pipeline)
   #
   # @example
   #   $ rails generate cacheable_flash:install
@@ -18,7 +18,7 @@ module CacheableFlash
         ActiveSupport::Deprecation.warn("Rails 3.1 has the asset pipeline, so you only need to copy javascript files if you aren't using it.")
       end
       template 'flash.js',     'public/javascripts/flash.js'
-      template 'jquery.cookie.js', 'public/javascripts/jquery.cookie.js'
+      template 'js.cookie.js', 'public/javascripts/js.cookie.js'
     end
   end
 end

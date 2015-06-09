@@ -27,13 +27,13 @@ So if you have config.assets.enabled = false in application.rb then in your layo
   javascript_include_tag :cacheable_flash
 
 Otherwise, in your layout, just source them like normal:
-  javascript_include_tag 'flash', 'jquery.cookie'
+  javascript_include_tag 'flash', 'js.cookie'
 
 === With asset pipeline (requires Rails 3.1)
 
 The asset pipeline should have access to the assets in this gem via your app/assets/javascripts/application.js:
   //= require flash
-  //= require jquery.cookie
+  //= require js.cookie
 
 == Mailing List
 
