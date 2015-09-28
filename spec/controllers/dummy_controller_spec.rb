@@ -5,7 +5,7 @@ require 'spec_helper'
 # even if you are actually using the Middleware in your actual app
 # The DummyController in the dummy app includes CacheableFlash to make the helpers testable as a controller spec.
 
-describe DummyController do
+describe DummyController, type: :controller do
 
   render_views
 
@@ -20,20 +20,20 @@ describe DummyController do
         #end
         it "should handle multiple keys" do
           get :multiple_keys
-          flash_cookie['errors'].should == "This is an Error"
-          flash_cookie['notice'].should == "This is a Notice"
+          expect(flash_cookie['errors']).to eq("This is an Error")
+          expect(flash_cookie['notice']).to eq("This is a Notice")
         end
         it "should handle overriding values" do
           get :override
-          flash_cookie['notice'].should_not == "original"
-          flash_cookie['notice'].should == "message"
+          expect(flash_cookie['notice']).to_not eq("original")
+          expect(flash_cookie['notice']).to eq("message")
         end
         it "should handle stacking values as concatenations" do
           get :stack
-          flash_cookie['notice'].should == "originalmessageanother"
+          expect(flash_cookie['notice']).to eq("originalmessageanother")
         end
         it "should raise exception when cold booting the flash" do
-          lambda { get :cold_boot }.should raise_exception
+          expect { get :cold_boot }.to raise_error NoMethodError, /undefined method `<<' for nil:NilClass/
         end
       end
       describe "stacking" do
@@ -48,21 +48,21 @@ describe DummyController do
         end
         it "should handle multiple keys" do
           get :multiple_keys
-          flash_cookie['errors'].should == ["This is an Error"]
-          flash_cookie['notice'].should == ["This is a Notice"]
+          expect(flash_cookie['errors']).to eq(["This is an Error"])
+          expect(flash_cookie['notice']).to eq(["This is a Notice"])
         end
         it "should handle overriding values" do
           get :override
-          flash_cookie['notice'].should_not == ["original"]
-          flash_cookie['notice'].should == ["message"]
+          expect(flash_cookie['notice']).to_not eq(["original"])
+          expect(flash_cookie['notice']).to eq(["message"])
         end
         it "should handle stacking values" do
           get :stack
-          flash_cookie['notice'].should == ["original","message","another"]
+          expect(flash_cookie['notice']).to eq(["original","message","another"])
         end
         it "should handle cold booting the flash" do
           get :cold_boot
-          flash_cookie['notice'].should == ["original","message","another"]
+          expect(flash_cookie['notice']).to eq(["original","message","another"])
         end
       end
     end

@@ -5,7 +5,7 @@ require 'spec_helper'
 # even if you are actually using the Middleware in your actual app
 # The DummyController in the dummy app includes CacheableFlash to make the helpers testable as a controller spec.
 
-describe ComparisonController do
+describe ComparisonController, type: :controller do
 
   render_views
 
@@ -20,19 +20,19 @@ describe ComparisonController do
         #end
         it "should handle comparison with hash through keys" do
           get :single_key_hash
-          flash_cookie['notice'].should == {'hello' => 'asdf'} # Keys of hashes are always strings on the other side of JSON
+          expect(flash_cookie['notice']).to eq({'hello' => 'asdf'}) # Keys of hashes are always strings on the other side of JSON
         end
         it "should handle comparison with number" do
           get :single_key_number
-          flash_cookie['notice'].should == 1
+          expect(flash_cookie['notice']).to eq(1)
         end
         it "should handle comparison with string" do
           get :single_key_string
-          flash_cookie['notice'].should == 'message'
+          expect(flash_cookie['notice']).to eq('message')
         end
         it "should handle comparison with array" do
           get :single_key_array
-          flash_cookie['notice'].should == ['message'] # Because actually set to an array, not because stacking
+          expect(flash_cookie['notice']).to eq(['message']) # Because actually set to an array, not because stacking
         end
       end
       describe "stacking" do
@@ -47,19 +47,19 @@ describe ComparisonController do
         end
         it "should handle comparison with hash through keys" do
           get :single_key_hash
-          flash_cookie['notice'].should == [{'hello' => 'asdf'}] # Keys of hashes are always strings on the other side of JSON
+          expect(flash_cookie['notice']).to eq([{'hello' => 'asdf'}]) # Keys of hashes are always strings on the other side of JSON
         end
         it "should handle comparison with number" do
           get :single_key_number
-          flash_cookie['notice'].should == [1]
+          expect(flash_cookie['notice']).to eq([1])
         end
         it "should handle comparison with string" do
           get :single_key_string
-          flash_cookie['notice'].should == ['message'] # flash was set to a string, but comparison is with an array!
+          expect(flash_cookie['notice']).to eq(['message']) # flash was set to a string, but comparison is with an array!
         end
         it "should handle comparison with array" do
           get :single_key_array
-          flash_cookie['notice'].should == ['message']
+          expect(flash_cookie['notice']).to eq(['message'])
         end
       end
     end
@@ -80,18 +80,18 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice','not message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice','not message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice','message')}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice','message')}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice','message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice','message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice','not message')}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice','not message')}.to_not raise_error
             end
 
           end
@@ -102,18 +102,18 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice','not message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice','not message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice','message')}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice','message')}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice','message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice','message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice','not message')}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice','not message')}.to_not raise_error
             end
           end
         end
@@ -123,18 +123,18 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice','not message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice','not message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice',{'hello' => 'asdf'})}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice',{'hello' => 'asdf'})}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice',{'hello' => 'asdf'})}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',{'hello' => 'asdf'})}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice','not message')}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice','not message')}.to_not raise_error
             end
 
           end
@@ -145,18 +145,18 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice',2)}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice',2)}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice',1)}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice',1)}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice',1)}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',1)}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice',2)}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice',2)}.to_not raise_error
             end
           end
         end
@@ -177,20 +177,20 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice','not message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice','not message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice','message')}.should_not raise_exception
-              lambda {response.should have_cacheable_flash('notice',['message'])}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice','message')}.to_not raise_error
+              expect { expect(response).to have_cacheable_flash('notice',['message'])}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice','message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
-              lambda {response.should_not have_cacheable_flash('notice',['message'])}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice','message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',['message'])}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice','not message')}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice','not message')}.to_not raise_error
             end
 
           end
@@ -201,20 +201,20 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice',['not message'])}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice',['not message'])}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice','message')}.should_not raise_exception
-              lambda {response.should have_cacheable_flash('notice',['message'])}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice','message')}.to_not raise_error
+              expect { expect(response).to have_cacheable_flash('notice',['message'])}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice','message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
-              lambda {response.should_not have_cacheable_flash('notice',['message'])}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice','message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',['message'])}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice','not message')}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice','not message')}.to_not raise_error
             end
           end
         end
@@ -224,20 +224,20 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice','not message')}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice','not message')}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice',{'hello' => 'asdf'})}.should_not raise_exception
-              lambda {response.should have_cacheable_flash('notice',[{'hello' => 'asdf'}])}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice',{'hello' => 'asdf'})}.to_not raise_error
+              expect { expect(response).to have_cacheable_flash('notice',[{'hello' => 'asdf'}])}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice',{'hello' => 'asdf'})}.should raise_error RSpec::Expectations::ExpectationNotMetError
-              lambda {response.should_not have_cacheable_flash('notice',[{'hello' => 'asdf'}])}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',{'hello' => 'asdf'})}.to raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',[{'hello' => 'asdf'}])}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice','not message')}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice','not message')}.to_not raise_error
             end
 
           end
@@ -248,20 +248,20 @@ describe ComparisonController do
           end
           context "#should" do
             it "raises error when not a match" do
-              lambda {response.should have_cacheable_flash('notice',2)}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to have_cacheable_flash('notice',2)}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when a match" do
-              lambda {response.should have_cacheable_flash('notice',1)}.should_not raise_exception
-              lambda {response.should have_cacheable_flash('notice',[1])}.should_not raise_exception
+              expect { expect(response).to have_cacheable_flash('notice',1)}.to_not raise_error
+              expect { expect(response).to have_cacheable_flash('notice',[1])}.to_not raise_error
             end
           end
           context "#should_not" do
             it "raises error when a match" do
-              lambda {response.should_not have_cacheable_flash('notice',1)}.should raise_error RSpec::Expectations::ExpectationNotMetError
-              lambda {response.should_not have_cacheable_flash('notice',[1])}.should raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',1)}.to raise_error RSpec::Expectations::ExpectationNotMetError
+              expect { expect(response).to_not have_cacheable_flash('notice',[1])}.to raise_error RSpec::Expectations::ExpectationNotMetError
             end
             it "should not raise error when not a match" do
-              lambda {response.should_not have_cacheable_flash('notice',2)}.should_not raise_exception
+              expect { expect(response).to_not have_cacheable_flash('notice',2)}.to_not raise_error
             end
           end
         end

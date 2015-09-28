@@ -11,10 +11,10 @@ module CacheableFlash
         flash_in_stack(flash_cookie_for(response)[flash_status], expecting)
       end
       match{|response| has_flash_cookie?(response)}
-      failure_message_for_should do |actual|
+      failure_message do |actual|
         "expected flash[:#{expected[0]}] to be or include #{expected[1].inspect}, but got #{flash_cookie_for(actual)[expected[0]]}"
       end
-      failure_message_for_should_not do |actual|
+      failure_message_when_negated do |actual|
         "expected flash[:#{expected[0]}] to not be and not include #{expected[1].inspect}, but got #{flash_cookie_for(actual)[expected[0]]}"
       end
     end
@@ -24,10 +24,10 @@ module CacheableFlash
         flash_in_stack(flash_cookie_for(response)[flash_status], expecting)
       end
       match{|response| has_cacheable_flash?(response)}
-      failure_message_for_should do |actual|
+      failure_message do |actual|
         "expected flash[:#{expected[0]}] to be or include #{expected[1].inspect}, but got #{flash_cookie_for(actual)[expected[0]]}"
       end
-      failure_message_for_should_not do |actual|
+      failure_message_when_negated do |actual|
         "expected flash[:#{expected[0]}] to not be and not include #{expected[1].inspect}, but got #{flash_cookie_for(actual)[expected[0]]}"
       end
     end

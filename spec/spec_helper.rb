@@ -2,19 +2,18 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment",  __FILE__)
 
-require 'rspec/rails'
+require "rspec/rails"
 require "json"
-require 'cacheable_flash'
-require 'cacheable_flash/rspec_matchers'
+require "cacheable_flash"
+require "cacheable_flash/rspec_matchers"
 
-ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
+ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), "../")
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
 
 RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
 
@@ -22,7 +21,7 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = 'random'
+  config.order = "random"
 
   config.include CacheableFlash::RspecMatchers
 end
