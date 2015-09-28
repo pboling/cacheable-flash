@@ -1,3 +1,10 @@
+0.3.4 - SEP.28.2015
+* Maintenance release with minor changes and a security fix
+* fix JS error when flash cookie is not set (new version of jquery.cookie returns undefined when a cookie does not exist) [nickurban]
+* Reflected XSS vulnerability fix [rubyconvict]
+* If domain is not set, do not force as empty string. Breaks IE. [ndreckshage]
+* Update CacheableFlash::RspecMatchers and rspec test suite for latest Rspec v3.3 [Peter Boling]
+
 0.3.3 - SEP.13.2013
 * Maintenance release with lots of minor changes and fixes.
 * Main gem should be API compatible.
