@@ -23,3 +23,51 @@ Flash.writeDataTo = function(name, element, callback) {
     }
   }
 };
+
+// Alternative:
+
+    var Flash = new Object();
+//    Flash.data = {};
+//    Flash._$flash_container = $('#flash_container');
+//    Flash.transferFromCookies = function()
+//    {
+//      var flashCookie = $.cookie('flash') || '',
+//        json = flashCookie.replace(/\+/g, " ").replace(/%2B/g, "+"),
+//        data = $.parseJSON(json);
+//      if (!data) {data = {};}
+//      Flash.data = data;
+//      $.cookie("flash", null, { path: '/', expires: -10 });
+//    };
+//    Flash.displayAll = function(){
+//      var level;
+//      for (level in Flash.data) {
+//        if (Flash.data.hasOwnProperty(level)) {
+//          if (level.match(/sticky/g)) {
+//            Flash.displaySticky(Flash.data[level], level);
+//          } else {
+//            Flash.displayFading(Flash.data[level], level);
+//          }
+//          Flash.data[level] = null;
+//        }
+//      }
+//    };
+//
+//    Flash.displayFading = function(level, message){
+//      //Flash._$flash_container.offset({left: 0, top: $(window).scrollTop()});
+//      Flash._$flash_container.append('<div class="flash" style="display: none;"><span class="'+level+'-icon"/><p class="'+level+'"/></div>');
+//      var lastFlash = Flash._$flash_container.find('.flash').last();
+//      lastFlash.children().eq(1).html(message);
+//      lastFlash.slideDown().delay(5000).slideUp();
+//    };
+//    Flash.displaySticky = function(level, message) {
+//      //Flash._$flash_container.offset({left: 0, top: $(window).scrollTop()});
+//      Flash._$flash_container.append('<div class="flash" style="display: none;"><span class="'+level+'-close"/><span class="'+level+'-icon"/><p class="'+level+'"/></div>');
+//      var lastFlash = Flash._$flash_container.find('.flash').last();
+//      lastFlash.children().eq(2).html(message);
+//      lastFlash.slideDown();
+//      lastFlash.children().first().click(function(e) {
+//        lastFlash.slideUp();
+//      });
+//    };
+//
+//    return Flash;
