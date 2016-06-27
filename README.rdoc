@@ -95,6 +95,10 @@ Use this method if you set flash messages inside a rescue_from block:
     Flash.writeDataTo('notice', $('#notice_div_id'));
   </script>
 
+== Security warning
+The gem is susceptible to reflected XSS attack. Make sure no non-alphanumerical
+user-generated content is stored inside flash messages (html or plain text).
+
 == Testing
 You can test your flash cookies by making assertions on the json of the "flash" cookie.
 Cacheable Flash provides test helpers which includes the flash_cookie method.
