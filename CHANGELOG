@@ -1,3 +1,6 @@
+0.4.0 - JUN.29.2016
+* Moved from jquery.cookie to js.cookie
+
 0.3.4 - SEP.28.2015
 * Maintenance release with minor changes and a security fix
 * fix JS error when flash cookie is not set (new version of jquery.cookie returns undefined when a cookie does not exist) [nickurban]

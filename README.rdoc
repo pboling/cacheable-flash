@@ -27,13 +27,13 @@ So if you have config.assets.enabled = false in application.rb then in your layo
   javascript_include_tag :cacheable_flash
 
 Otherwise, in your layout, just source them like normal:
-  javascript_include_tag 'flash', 'jquery.cookie'
+  javascript_include_tag 'flash', 'js.cookie'
 
 === With asset pipeline (requires Rails 3.1)
 
 The asset pipeline should have access to the assets in this gem via your app/assets/javascripts/application.js:
   //= require flash
-  //= require jquery.cookie
+  //= require js.cookie
 
 == Mailing List
 
@@ -138,7 +138,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 
   describe TestController, "#index" do
     include CacheableFlash::TestHelpers
-    
+
     it "writes to the flash cookie" do
       get :index
       flash_cookie["notice"].should == "In index"
@@ -157,14 +157,14 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
 == Versioning
 
 This library aims to adhere to {Semantic Versioning 2.0.0}[http://semver.org/].
-Violations of this scheme should be reported as bugs. Specifically, 
-if a minor or patch version is released that breaks backward 
+Violations of this scheme should be reported as bugs. Specifically,
+if a minor or patch version is released that breaks backward
 compatibility, a new version should be immediately released that
-restores compatibility. Breaking changes to the public API will 
+restores compatibility. Breaking changes to the public API will
 only be introduced with new major versions.
 
-As a result of this policy, you can (and should) specify a 
-dependency on this gem using the {Pessimistic Version Constraint}[http://docs.rubygems.org/read/chapter/16#page74] with two digits of precision. 
+As a result of this policy, you can (and should) specify a
+dependency on this gem using the {Pessimistic Version Constraint}[http://docs.rubygems.org/read/chapter/16#page74] with two digits of precision.
 
 For example:
 
