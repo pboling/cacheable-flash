@@ -23,8 +23,15 @@ module CacheableFlash
   include CacheableFlash::CookieFlash
 
   def self.included(base)
-    #base must define around_filter, as in Rails
-    base.around_filter :write_flash_to_cookie
+    #base must define around_action or around_filter, as in Rails
+
+    around_method = if base.respond_to?(:around_action)
+      :around_action
+    else
+      :around_filter
+    end
+
+    base.send around_method, :write_flash_to_cookie
   end
 
   def write_flash_to_cookie
