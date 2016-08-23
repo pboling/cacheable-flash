@@ -1,7 +1,3 @@
-#####################
-# NOTE: the CacheableFlash::Config class is experimental, and no code uses the config settings yet.
-# So using config values will do nothing as of now.
-# These are ust some ideas of what could be...
 module CacheableFlash
   class Config
 
