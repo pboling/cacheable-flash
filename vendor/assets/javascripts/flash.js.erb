@@ -4,10 +4,10 @@ var Flash = new Object();
 Flash.data = {};
 
 Flash.transferFromCookies = function() {
-  var data = JSON.parse(unescape($.cookie("flash") || '{}'));
+  var data = JSON.parse(unescape(Cookies.get("flash") || '{}'));
   if(!data) data = {};
   Flash.data = data;
-  $.cookie('flash', null, {path: '/', domain: '<%=CacheableFlash::Config.config[:domain]%>'});
+  Cookies.set('flash', null, {path: '/', domain: '<%=CacheableFlash::Config.config[:domain]%>'});
 };
 
 Flash.writeDataTo = function(name, element, callback) {
