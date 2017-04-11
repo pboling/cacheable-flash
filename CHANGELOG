@@ -1,8 +1,8 @@
-### 0.3.6 - FEB.06.2017
+### 1.0.0 - APR.11.2017
 * Moved from jquery.cookie to js.cookie
 
 
-### 0.3.5 - AUG.18.2016
+### 0.3.5 - AUG.18.2016 (unreleased)
 * `around_filter` is deprecated in Rails 5 and will be removed in Rails 5.1. Uses `around_action` if available and falls back to `around_filter` otherwise.
 
 
