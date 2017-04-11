@@ -1,3 +1,8 @@
+### 1.0.1 - APR.11.2017
+* Modernized gem structure
+* Adds builds on travis
+
+
 ### 1.0.0 - APR.11.2017
 * Moved from jquery.cookie to js.cookie
 
