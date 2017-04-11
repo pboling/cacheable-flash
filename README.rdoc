@@ -1,4 +1,4 @@
-= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pivotal/cacheable-flash] {<img src="https://secure.travis-ci.org/pboling/cacheable-flash.png?branch=master" alt="Build Status" />}[http://travis-ci.org/pboling/cacheable-flash] {<img src="http://api.coderwall.com/pboling/endorsecount.png" />}[http://coderwall.com/pboling]
+= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pboling/cacheable-flash] {<img src="https://secure.travis-ci.org/pboling/cacheable-flash.png?branch=master" alt="Build Status" />}[http://travis-ci.org/pboling/cacheable-flash] {<img src="http://api.coderwall.com/pboling/endorsecount.png" />}[http://coderwall.com/pboling]
 
 == Description
 
@@ -41,13 +41,13 @@ http://groups.google.com/group/PivotalLabsOpenSource
 
 == Bug/Feature Tracker
 
-https://github.com/pivotal/cacheable-flash/issues
+https://github.com/pboling/cacheable-flash/issues
 
 == Wiki
 
 Please help document!
 
-https://github.com/pivotal/cacheable-flash/wiki
+https://github.com/pboling/cacheable-flash/wiki
 
 == Usage as an around filter
 
@@ -174,5 +174,5 @@ For example:
 
 Licensed under the MIT License. See LICENSE for further details.
 
-- Copyright (c) 2011-2012 {Peter H. Boling}[http://railsbling.com] {<img src="http://api.coderwall.com/pboling/endorsecount.png" />}[http://coderwall.com/pboling]
+- Copyright (c) 2011-2017 {Peter H. Boling}[http://railsbling.com]
 - Copyright (c) 2007-2010 {Pivotal Labs}[https://coderwall.com/team/pivotal-labs]

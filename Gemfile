@@ -1,5 +1,4 @@
-source "http://rubygems.org"
+source 'https://rubygems.org'
 
-#gem 'stackable_flash', :path => '../stackable_flash'
-
+# Specify your gem's dependencies in cacheable-flash.gemspec
 gemspec

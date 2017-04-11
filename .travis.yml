@@ -1,8 +1,9 @@
+sudo: false
 language: ruby
 rvm:
-  - 1.9.3
-  - 1.9.2
-  - jruby-19mode
-  - rbx-19mode
-  - ruby-head
-  - jruby-head
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4.0
+before_install: gem install bundler -v 1.14.6
