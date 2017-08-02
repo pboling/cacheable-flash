@@ -113,6 +113,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
   require "cacheable_flash/test_helpers"
 
   class TestController < ActionController::Base
+    include CacheableFlash
     def index
       flash["notice"] = "In index"
     end
@@ -137,6 +138,7 @@ Cacheable Flash provides test helpers which includes the flash_cookie method.
   require "cacheable_flash/test_helpers"
 
   class TestController < ActionController::Base
+    include CacheableFlash
     def index
       flash["notice"] = "In index"
     end
