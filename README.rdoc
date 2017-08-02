@@ -1,3 +1,9 @@
+= A New Hope
+
+This gem is no longer maintained.  Please consider switching to https://github.com/leonid-shevtsov/unobtrusive_flash
+
+So long, and thanks for all the fish!
+
 = CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pboling/cacheable-flash] {<img src="https://secure.travis-ci.org/pboling/cacheable-flash.png?branch=master" alt="Build Status" />}[http://travis-ci.org/pboling/cacheable-flash] {<img src="http://api.coderwall.com/pboling/endorsecount.png" />}[http://coderwall.com/pboling]
 
 == Description
