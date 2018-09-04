@@ -1,6 +1,8 @@
 = A New Hope
 
-This gem is no longer maintained.  Please consider switching to https://github.com/leonid-shevtsov/unobtrusive_flash
+== This gem is no longer maintained.
+
+=== Please consider switching to https://github.com/leonid-shevtsov/unobtrusive_flash
 
 So long, and thanks for all the fish!
 
