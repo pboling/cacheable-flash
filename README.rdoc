@@ -4,7 +4,7 @@ This gem is no longer maintained.  Please consider switching to https://github.c
 
 So long, and thanks for all the fish!
 
-= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pboling/cacheable-flash] {<img src="https://secure.travis-ci.org/pboling/cacheable-flash.png?branch=master" alt="Build Status" />}[http://travis-ci.org/pboling/cacheable-flash] {<img src="http://api.coderwall.com/pboling/endorsecount.png" />}[http://coderwall.com/pboling]
+= CacheableFlash {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pboling/cacheable-flash] {<img src="https://secure.travis-ci.org/pboling/cacheable-flash.png?branch=master" alt="Build Status" />}[http://travis-ci.org/pboling/cacheable-flash] {<img src="https://badges.depfu.com/badges/f13068686306ad691084c5112078dd2d/count.svg" />}[https://depfu.com/github/pboling/cacheable-flash?project=Bundler]
 
 == Description
 
